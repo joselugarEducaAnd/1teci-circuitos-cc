@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giro y conmutación de un motor de corriente continua</title>
+<style>
+  :root {
+    color-scheme: light;
+    --ink: #20252b;
+    --muted: #59636e;
+    --blue: #3d6694;
+    --blue-soft: #eff3f8;
+    --teal: #417e72;
+    --teal-soft: #f0f7f6;
+    --gold: #9b681c;
+    --gold-soft: #fbf3e4;
+    --accent: #7f2937;
+    --accent-soft: #f8ecee;
+    --line: #d9dde2;
+    --surface: #ffffff;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--surface);
+    color: var(--ink);
+    font-family: "Atkinson Hyperlegible", Arial, sans-serif;
+  }
+
+  .motor-interactivo {
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: .8rem;
+  }
+
+  .estado {
+    margin: 0 0 .65rem;
+    padding: .65rem .8rem;
+    border: 2px solid var(--blue);
+    border-radius: .8rem;
+    background: var(--blue-soft);
+    text-align: center;
+  }
+
+  .estado-titulo {
+    display: block;
+    margin: 0;
+    font-size: clamp(1.05rem, 2.8vw, 1.45rem);
+    font-weight: 700;
+  }
+
+  .estado-detalle {
+    display: block;
+    margin-top: .25rem;
+    font-size: clamp(.9rem, 2.2vw, 1.05rem);
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: var(--surface);
+  }
+
+  .controles {
+    display: grid;
+    gap: .7rem;
+    margin-top: .7rem;
+  }
+
+  .botones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .55rem;
+  }
+
+  button {
+    min-height: 44px;
+    padding: .55rem .85rem;
+    border: 2px solid var(--blue);
+    border-radius: .55rem;
+    background: var(--surface);
+    color: var(--ink);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  button.principal {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #ffffff;
+  }
+
+  button:hover:not(:disabled) { background: var(--blue-soft); }
+  button.principal:hover:not(:disabled) { background: #65202d; }
+  button:focus-visible, input:focus-visible { outline: 3px solid #e59c2c; outline-offset: 3px; }
+  button:disabled { cursor: not-allowed; opacity: .48; }
+
+  .deslizador-fila {
+    display: grid;
+    grid-template-columns: minmax(9rem, auto) minmax(10rem, 1fr);
+    align-items: center;
+    gap: .75rem;
+  }
+
+  .deslizador-fila label { font-weight: 700; }
+  input[type="range"] { width: 100%; min-height: 44px; accent-color: var(--accent); }
+
+  .lectura {
+    margin: 0;
+    min-height: 1.5em;
+    color: var(--muted);
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .ayuda {
+    margin: 0;
+    color: var(--muted);
+    text-align: center;
+    font-size: .9rem;
+  }
+
+  @media (max-width: 560px) {
+    .motor-interactivo { padding: .45rem; }
+    .deslizador-fila { grid-template-columns: 1fr; gap: .1rem; }
+    button { flex: 1 1 9rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+<main class="motor-interactivo" aria-labelledby="estado-titulo">
+  <p class="estado" aria-live="polite" aria-atomic="true">
+    <span id="estado-titulo" class="estado-titulo">Posición inicial</span>
+    <span id="estado-detalle" class="estado-detalle">Las fuerzas forman un par horario.</span>
+  </p>
+
+  <svg id="motor-svg" viewBox="0 0 900 860" role="img" aria-labelledby="svg-title svg-desc">
+    <title id="svg-title">Bobina y corte transversal de un motor de corriente continua</title>
+    <desc id="svg-desc">Dos vistas sincronizadas muestran una bobina completa que gira alrededor del eje y los cortes de sus lados A y B. El campo magnético va de norte a sur. En cada zona neutra cambia el sentido de las corrientes y de las fuerzas para mantener el par horario.</desc>
+    <defs>
+      <marker id="flecha-azul" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto">
+        <path d="M1 1 L11 6 L1 11 Z" fill="#3d6694"/>
+      </marker>
+      <marker id="flecha-verde" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto">
+        <path d="M1 1 L11 6 L1 11 Z" fill="#417e72"/>
+      </marker>
+      <marker id="flecha-granate" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto">
+        <path d="M1 1 L11 6 L1 11 Z" fill="#7f2937"/>
+      </marker>
+      <marker id="flecha-dorada" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M1 1 L11 6 L1 11 Z" fill="#9b681c"/>
+      </marker>
+      <pattern id="rayado-n" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
+        <rect width="12" height="12" fill="#eff3f8"/>
+        <line x1="0" y1="0" x2="0" y2="12" stroke="#3d6694" stroke-width="3"/>
+      </pattern>
+      <pattern id="rayado-s" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)">
+        <rect width="12" height="12" fill="#f8ecee"/>
+        <line x1="0" y1="0" x2="0" y2="12" stroke="#943d48" stroke-width="3"/>
+      </pattern>
+    </defs>
+    <style>
+      text { font-family: "Atkinson Hyperlegible", Arial, sans-serif; fill: #20252b; }
+      .panel { fill: #fff; stroke: #e4cdd1; stroke-width: 3; }
+      .titulo { font-size: 29px; font-weight: 700; }
+      .etiqueta { font-size: 24px; font-weight: 700; }
+      .texto { font-size: 21px; }
+      .pequeno { font-size: 18px; }
+      .eje { fill: none; stroke: #59636e; stroke-width: 9; stroke-linecap: round; }
+      .rotor { fill: #f5f6f7; stroke: #59636e; stroke-width: 7; }
+      .bobina { fill: none; stroke: #9b681c; stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; }
+      .corriente { fill: none; stroke: #9b681c; stroke-width: 6; stroke-linecap: round; marker-end: url(#flecha-dorada); }
+      .campo { fill: none; stroke: #3d6694; stroke-width: 8; marker-end: url(#flecha-azul); }
+      .fuerza { fill: none; stroke: #417e72; stroke-width: 8; marker-end: url(#flecha-verde); }
+      .par { fill: none; stroke: #7f2937; stroke-width: 9; marker-end: url(#flecha-granate); }
+    </style>
+
+    <rect class="panel" x="8" y="8" width="884" height="276" rx="22"/>
+    <text class="titulo" x="450" y="43" text-anchor="middle">Vista oblicua: la bobina completa gira con el eje</text>
+    <line class="eje" x1="115" y1="151" x2="785" y2="151"/>
+    <polygon id="rotor-oblicuo" points="235,104 665,104 700,200 270,200" fill="#e7eaee" stroke="#20252b" stroke-width="6"/>
+    <polygon id="plano-corte" points="419,87 480,98 485,216 424,205" fill="#eff3f8" fill-opacity=".72" stroke="#3d6694" stroke-width="4" stroke-dasharray="10 8"/>
+    <text class="pequeno" x="452" y="246" text-anchor="middle">plano del corte transversal</text>
+    <path id="bobina-oblicua" class="bobina" d="M250 95 L650 95 L690 208 L290 208 Z"/>
+    <line id="corriente-a-oblicua" class="corriente" x1="650" y1="95" x2="250" y2="95"/>
+    <line id="corriente-b-oblicua" class="corriente" x1="290" y1="208" x2="690" y2="208"/>
+    <rect id="fondo-etiqueta-a-oblicua" x="199" y="57" width="42" height="36" rx="11" fill="#fff" stroke="#9b681c" stroke-width="3"/>
+    <rect id="fondo-etiqueta-b-oblicua" x="679" y="196" width="42" height="36" rx="11" fill="#fff" stroke="#9b681c" stroke-width="3"/>
+    <text id="etiqueta-a-oblicua" class="etiqueta" x="220" y="84" text-anchor="middle">A</text>
+    <text id="etiqueta-b-oblicua" class="etiqueta" x="700" y="223" text-anchor="middle">B</text>
+    <text class="texto" x="92" y="188">eje</text>
+    <text class="pequeno" x="450" y="270" text-anchor="middle">Las flechas doradas recorren los lados axiales A y B; las cabezas cierran la bobina.</text>
+
+    <rect class="panel" x="8" y="300" width="884" height="550" rx="22"/>
+    <text class="titulo" x="450" y="337" text-anchor="middle">Corte transversal: corriente, fuerza y par</text>
+    <rect x="42" y="465" width="130" height="230" rx="16" fill="url(#rayado-n)" stroke="#3d6694" stroke-width="6"/>
+    <rect x="728" y="465" width="130" height="230" rx="16" fill="url(#rayado-s)" stroke="#943d48" stroke-width="6"/>
+    <text class="titulo" x="107" y="592" text-anchor="middle">N</text>
+    <text class="titulo" x="793" y="592" text-anchor="middle">S</text>
+    <path class="campo" d="M205 397 H695"/>
+    <text class="etiqueta" x="450" y="382" text-anchor="middle" fill="#3d6694">campo magnético B</text>
+    <circle class="rotor" cx="450" cy="580" r="142"/>
+    <circle cx="450" cy="580" r="25" fill="#fff" stroke="#20252b" stroke-width="6"/>
+    <line id="guia-a" x1="450" y1="580" x2="345" y2="580" stroke="#59636e" stroke-width="4" stroke-dasharray="9 8" opacity="0"/>
+    <line id="guia-b" x1="450" y1="580" x2="555" y2="580" stroke="#59636e" stroke-width="4" stroke-dasharray="9 8" opacity="0"/>
+
+    <g id="conductor-a">
+      <circle r="31" fill="#fbf3e4" stroke="#9b681c" stroke-width="8"/>
+      <circle r="23" fill="#fff" stroke="#20252b" stroke-width="5"/>
+      <circle id="punto-a" r="8" fill="#20252b"/>
+      <path id="cruz-a" d="M-13 -13 L13 13 M13 -13 L-13 13" fill="none" stroke="#20252b" stroke-width="6" stroke-linecap="round" display="none"/>
+    </g>
+    <g id="conductor-b">
+      <circle r="31" fill="#fbf3e4" stroke="#9b681c" stroke-width="8"/>
+      <circle r="23" fill="#fff" stroke="#20252b" stroke-width="5"/>
+      <circle id="punto-b" r="8" fill="#20252b" display="none"/>
+      <path id="cruz-b" d="M-13 -13 L13 13 M13 -13 L-13 13" fill="none" stroke="#20252b" stroke-width="6" stroke-linecap="round"/>
+    </g>
+    <text id="etiqueta-a" class="etiqueta" x="330" y="635" text-anchor="middle">A</text>
+    <text id="etiqueta-b" class="etiqueta" x="570" y="635" text-anchor="middle">B</text>
+
+    <g id="fuerza-a">
+      <line id="flecha-fuerza-a" class="fuerza" x1="300" y1="640" x2="300" y2="510"/>
+      <text id="texto-fuerza-a" class="etiqueta" x="270" y="503" text-anchor="middle">F</text>
+    </g>
+    <g id="fuerza-b">
+      <line id="flecha-fuerza-b" class="fuerza" x1="600" y1="510" x2="600" y2="640"/>
+      <text id="texto-fuerza-b" class="etiqueta" x="630" y="670" text-anchor="middle">F</text>
+    </g>
+
+    <g id="grupo-par">
+      <path class="par" d="M650 702 A235 108 0 0 1 250 702"/>
+    </g>
+    <rect id="fondo-par" x="342" y="685" width="216" height="48" rx="13" fill="#fff" stroke="#7f2937" stroke-width="3"/>
+    <text id="texto-par" class="texto" x="450" y="717" text-anchor="middle">par horario</text>
+    <rect x="115" y="805" width="245" height="35" rx="11" fill="#f0f7f6" stroke="#417e72" stroke-width="2"/>
+    <rect x="540" y="805" width="245" height="35" rx="11" fill="#f0f7f6" stroke="#417e72" stroke-width="2"/>
+    <text id="lectura-a-svg" class="pequeno" x="237" y="829" text-anchor="middle">A: ⊙ sale</text>
+    <text id="lectura-b-svg" class="pequeno" x="662" y="829" text-anchor="middle">B: ⊗ entra</text>
+  </svg>
+
+  <section class="controles" aria-label="Controles de la animación">
+    <div class="botones">
+      <button id="anterior" type="button">← Paso anterior</button>
+      <button id="animar" class="principal" type="button">Animar el siguiente paso</button>
+      <button id="siguiente" type="button">Paso siguiente →</button>
+    </div>
+    <div class="deslizador-fila">
+      <label for="recorrido">Recorrido de una vuelta</label>
+      <input id="recorrido" type="range" min="0" max="16" step="0.01" value="0" aria-valuetext="0 grados; posición inicial">
+    </div>
+    <p id="lectura" class="lectura">Paso 1 de 7 · ángulo del rotor: 0°</p>
+    <p class="ayuda">El deslizador permite detener la bobina en cualquier posición. Los botones saltan o animan hasta los estados didácticos.</p>
+  </section>
+  <noscript><p>Esta simulación necesita JavaScript. La secuencia estática situada después contiene la misma explicación.</p></noscript>
+</main>
+
+<script>
+(() => {
+  "use strict";
+
+  const DURACION = 16;
+  const PASOS = [
+    { tiempo: 0, titulo: "Posición inicial", detalle: "Las fuerzas forman un par horario." },
+    { tiempo: 3.2, titulo: "Primera zona neutra", detalle: "A y B están alineados con el diámetro vertical y el par es aproximadamente cero." },
+    { tiempo: 4.2, titulo: "Primera conmutación", detalle: "El colector ha invertido las corrientes y, con ellas, las fuerzas magnéticas." },
+    { tiempo: 7.5, titulo: "Después de media vuelta", detalle: "A y B han intercambiado su posición y el par continúa siendo horario." },
+    { tiempo: 10.2, titulo: "Segunda zona neutra", detalle: "El par vuelve a ser aproximadamente cero antes de la segunda conmutación." },
+    { tiempo: 11.2, titulo: "Segunda conmutación", detalle: "El colector vuelve a invertir las corrientes para conservar el sentido del par." },
+    { tiempo: 15.95, titulo: "Vuelta completa", detalle: "La bobina recupera la posición inicial y el ciclo puede repetirse." }
+  ];
+
+  const $ = (id) => document.getElementById(id);
+  const elementos = {
+    titulo: $("estado-titulo"), detalle: $("estado-detalle"), lectura: $("lectura"),
+    recorrido: $("recorrido"), anterior: $("anterior"), animar: $("animar"), siguiente: $("siguiente"),
+    bobina: $("bobina-oblicua"), corrienteAOblicua: $("corriente-a-oblicua"), corrienteBOblicua: $("corriente-b-oblicua"),
+    etiquetaAOblicua: $("etiqueta-a-oblicua"), etiquetaBOblicua: $("etiqueta-b-oblicua"),
+    fondoEtiquetaAOblicua: $("fondo-etiqueta-a-oblicua"), fondoEtiquetaBOblicua: $("fondo-etiqueta-b-oblicua"),
+    conductorA: $("conductor-a"), conductorB: $("conductor-b"), puntoA: $("punto-a"), puntoB: $("punto-b"),
+    cruzA: $("cruz-a"), cruzB: $("cruz-b"), etiquetaA: $("etiqueta-a"), etiquetaB: $("etiqueta-b"),
+    fuerzaA: $("flecha-fuerza-a"), fuerzaB: $("flecha-fuerza-b"), textoFuerzaA: $("texto-fuerza-a"), textoFuerzaB: $("texto-fuerza-b"),
+    guiaA: $("guia-a"), guiaB: $("guia-b"), grupoPar: $("grupo-par"), fondoPar: $("fondo-par"), textoPar: $("texto-par"),
+    lecturaA: $("lectura-a-svg"), lecturaB: $("lectura-b-svg")
+  };
+
+  let tiempo = 0;
+  let reproduciendo = false;
+  let objetivo = null;
+  let instanteAnterior = null;
+  let raf = null;
+
+  function anguloRotor(t) {
+    if (t < 3) return 90 * t / 3;
+    if (t < 5) return 90;
+    if (t < 10) return 90 + 180 * (t - 5) / 5;
+    if (t < 12) return 270;
+    return 270 + 90 * (t - 12) / 4;
+  }
+
+  function estadoFisico(t) {
+    if (t < 3) return { titulo: "El par de fuerzas hace girar el rotor", detalle: "A: ⊙ sale · B: ⊗ entra", aSale: true, neutra: false };
+    if (t < 4) return { titulo: "Primera zona neutra", detalle: "El par es aproximadamente cero antes de conmutar.", aSale: true, neutra: true };
+    if (t < 5) return { titulo: "Primera conmutación", detalle: "El colector invierte simultáneamente las corrientes de A y B.", aSale: false, neutra: true };
+    if (t < 10) return { titulo: "La corriente invertida mantiene el par horario", detalle: "A: ⊗ entra · B: ⊙ sale", aSale: false, neutra: false };
+    if (t < 11) return { titulo: "Segunda zona neutra", detalle: "El par es aproximadamente cero antes de volver a conmutar.", aSale: false, neutra: true };
+    if (t < 12) return { titulo: "Segunda conmutación", detalle: "El colector restablece los sentidos iniciales de corriente.", aSale: true, neutra: true };
+    return { titulo: "El ciclo se repite con el mismo sentido de giro", detalle: "A: ⊙ sale · B: ⊗ entra", aSale: true, neutra: false };
+  }
+
+  function puntoTransversal(grados, radio = 105) {
+    const rad = (grados + 180) * Math.PI / 180;
+    return { x: 450 + radio * Math.cos(rad), y: 580 + radio * Math.sin(rad) };
+  }
+
+  function puntoOblicuo(grados, lado) {
+    const rad = (grados + 180) * Math.PI / 180;
+    const profundidad = 105 * Math.cos(rad);
+    const vertical = 105 * Math.sin(rad);
+    const baseX = lado === "izquierda" ? 260 : 640;
+    return {
+      x: baseX + .32 * profundidad,
+      y: 151 + .22 * profundidad + .72 * vertical
+    };
+  }
+
+  function linea(elemento, inicio, fin) {
+    elemento.setAttribute("x1", inicio.x.toFixed(1));
+    elemento.setAttribute("y1", inicio.y.toFixed(1));
+    elemento.setAttribute("x2", fin.x.toFixed(1));
+    elemento.setAttribute("y2", fin.y.toFixed(1));
+  }
+
+  function simbolo(sale, punto, cruz) {
+    punto.style.display = sale ? "block" : "none";
+    cruz.style.display = sale ? "none" : "block";
+  }
+
+  function posicionEtiquetaOblicua(inicio, fin, desdeInicio) {
+    const proporcion = desdeInicio ? .25 : .75;
+    const x = inicio.x + (fin.x - inicio.x) * proporcion;
+    let y = inicio.y + (fin.y - inicio.y) * proporcion;
+    let etiquetaY = y < 151 ? y - 26 : y + 38;
+    if (etiquetaY < 82) etiquetaY = y + 34;
+    if (etiquetaY > 232) etiquetaY = y - 24;
+    return { x, y: etiquetaY };
+  }
+
+  function colocarEtiquetaOblicua(texto, fondo, posicion) {
+    texto.setAttribute("x", posicion.x.toFixed(1));
+    texto.setAttribute("y", (posicion.y + 8).toFixed(1));
+    fondo.setAttribute("x", (posicion.x - 21).toFixed(1));
+    fondo.setAttribute("y", (posicion.y - 20).toFixed(1));
+  }
+
+  function colocarEtiquetaTransversal(elemento, posicion) {
+    if (Math.abs(posicion.x - 450) < 35) {
+      elemento.setAttribute("x", (posicion.x - 52).toFixed(1));
+      elemento.setAttribute("y", (posicion.y + 8).toFixed(1));
+    } else {
+      elemento.setAttribute("x", posicion.x.toFixed(1));
+      elemento.setAttribute("y", (posicion.y + (posicion.y < 580 ? -45 : 58)).toFixed(1));
+    }
+  }
+
+  function fuerza(elemento, texto, p, haciaArriba, neutra) {
+    const cercaDelEjeVertical = Math.abs(p.x - 450) < 35;
+    const separacionX = cercaDelEjeVertical ? (p.y < 580 ? 58 : -58) : (p.x < 450 ? -52 : 52);
+    const x = p.x + separacionX;
+    const alcance = neutra ? 46 : 64;
+    const inicio = { x, y: p.y + (haciaArriba ? alcance : -alcance) };
+    const fin = { x, y: p.y + (haciaArriba ? -alcance : alcance) };
+    linea(elemento, inicio, fin);
+    texto.setAttribute("x", (x + (separacionX < 0 ? -26 : 26)).toFixed(1));
+    texto.setAttribute("y", (fin.y + (haciaArriba ? -9 : 30)).toFixed(1));
+  }
+
+  function indicePasoExacto(t) {
+    return PASOS.findIndex((paso) => Math.abs(paso.tiempo - t) < .035);
+  }
+
+  function indicePasoSiguiente(t) {
+    const indice = PASOS.findIndex((paso) => paso.tiempo > t + .035);
+    return indice === -1 ? PASOS.length - 1 : indice;
+  }
+
+  function indicePasoAnterior(t) {
+    for (let i = PASOS.length - 1; i >= 0; i -= 1) {
+      if (PASOS[i].tiempo < t - .035) return i;
+    }
+    return 0;
+  }
+
+  function render() {
+    const angulo = anguloRotor(tiempo);
+    const estado = estadoFisico(tiempo);
+    const a = puntoTransversal(angulo);
+    const b = puntoTransversal(angulo + 180);
+    const aIzq = puntoOblicuo(angulo, "izquierda");
+    const aDer = puntoOblicuo(angulo, "derecha");
+    const bIzq = puntoOblicuo(angulo + 180, "izquierda");
+    const bDer = puntoOblicuo(angulo + 180, "derecha");
+
+    elementos.titulo.textContent = estado.titulo;
+    elementos.detalle.textContent = estado.detalle;
+    elementos.recorrido.value = tiempo.toFixed(2);
+    elementos.recorrido.setAttribute("aria-valuetext", `${Math.round(angulo)} grados; ${estado.titulo}`);
+
+    elementos.bobina.setAttribute("d", `M${aIzq.x.toFixed(1)} ${aIzq.y.toFixed(1)} L${aDer.x.toFixed(1)} ${aDer.y.toFixed(1)} L${bDer.x.toFixed(1)} ${bDer.y.toFixed(1)} L${bIzq.x.toFixed(1)} ${bIzq.y.toFixed(1)} Z`);
+    linea(elementos.corrienteAOblicua, estado.aSale ? aDer : aIzq, estado.aSale ? aIzq : aDer);
+    linea(elementos.corrienteBOblicua, estado.aSale ? bIzq : bDer, estado.aSale ? bDer : bIzq);
+    colocarEtiquetaOblicua(elementos.etiquetaAOblicua, elementos.fondoEtiquetaAOblicua, posicionEtiquetaOblicua(aIzq, aDer, true));
+    colocarEtiquetaOblicua(elementos.etiquetaBOblicua, elementos.fondoEtiquetaBOblicua, posicionEtiquetaOblicua(bIzq, bDer, false));
+
+    elementos.conductorA.setAttribute("transform", `translate(${a.x.toFixed(1)} ${a.y.toFixed(1)})`);
+    elementos.conductorB.setAttribute("transform", `translate(${b.x.toFixed(1)} ${b.y.toFixed(1)})`);
+    simbolo(estado.aSale, elementos.puntoA, elementos.cruzA);
+    simbolo(!estado.aSale, elementos.puntoB, elementos.cruzB);
+
+    colocarEtiquetaTransversal(elementos.etiquetaA, a);
+    colocarEtiquetaTransversal(elementos.etiquetaB, b);
+    fuerza(elementos.fuerzaA, elementos.textoFuerzaA, a, estado.aSale, estado.neutra);
+    fuerza(elementos.fuerzaB, elementos.textoFuerzaB, b, !estado.aSale, estado.neutra);
+
+    linea(elementos.guiaA, { x: 450, y: 580 }, a);
+    linea(elementos.guiaB, { x: 450, y: 580 }, b);
+    elementos.guiaA.style.opacity = estado.neutra ? "1" : "0";
+    elementos.guiaB.style.opacity = estado.neutra ? "1" : "0";
+    elementos.grupoPar.style.opacity = estado.neutra ? "0" : "1";
+    elementos.fondoPar.setAttribute("x", estado.neutra ? "602" : "342");
+    elementos.fondoPar.setAttribute("y", estado.neutra ? "548" : "685");
+    elementos.fondoPar.setAttribute("width", estado.neutra ? "114" : "216");
+    elementos.textoPar.setAttribute("x", estado.neutra ? "659" : "450");
+    elementos.textoPar.setAttribute("y", estado.neutra ? "580" : "717");
+    elementos.textoPar.textContent = estado.neutra ? "par ≈ 0" : "par horario";
+    elementos.lecturaA.textContent = `A: ${estado.aSale ? "⊙ sale" : "⊗ entra"}`;
+    elementos.lecturaB.textContent = `B: ${estado.aSale ? "⊗ entra" : "⊙ sale"}`;
+
+    const exacto = indicePasoExacto(tiempo);
+    const referencia = exacto >= 0 ? exacto : Math.max(0, indicePasoAnterior(tiempo));
+    elementos.lectura.textContent = `${exacto >= 0 ? `Paso ${exacto + 1} de ${PASOS.length}` : `Entre los pasos ${referencia + 1} y ${Math.min(referencia + 2, PASOS.length)}`} · ángulo del rotor: ${Math.round(angulo)}°`;
+    elementos.anterior.disabled = tiempo <= .035;
+    elementos.siguiente.disabled = tiempo >= PASOS[PASOS.length - 1].tiempo - .035;
+    if (!reproduciendo) {
+      elementos.animar.disabled = tiempo >= PASOS[PASOS.length - 1].tiempo - .035;
+      elementos.animar.textContent = "Animar el siguiente paso";
+    }
+  }
+
+  function detener(anunciar = false) {
+    reproduciendo = false;
+    instanteAnterior = null;
+    if (raf !== null) cancelAnimationFrame(raf);
+    raf = null;
+    elementos.animar.textContent = "Animar el siguiente paso";
+    elementos.animar.disabled = tiempo >= PASOS[PASOS.length - 1].tiempo - .035;
+    if (anunciar) elementos.lectura.setAttribute("aria-live", "polite");
+  }
+
+  function cuadro(instante) {
+    if (!reproduciendo) return;
+    if (instanteAnterior === null) instanteAnterior = instante;
+    const delta = Math.min(.08, (instante - instanteAnterior) / 1000);
+    instanteAnterior = instante;
+    tiempo += delta;
+    if (objetivo !== null && tiempo >= objetivo) {
+      tiempo = objetivo;
+      render();
+      detener(true);
+      return;
+    }
+    render();
+    raf = requestAnimationFrame(cuadro);
+  }
+
+  function animarSiguiente() {
+    if (reproduciendo) {
+      detener();
+      render();
+      return;
+    }
+    const indice = indicePasoSiguiente(tiempo);
+    objetivo = PASOS[indice].tiempo;
+    if (objetivo <= tiempo + .035) return;
+    reproduciendo = true;
+    elementos.animar.disabled = false;
+    elementos.animar.textContent = "Pausar";
+    instanteAnterior = null;
+    raf = requestAnimationFrame(cuadro);
+  }
+
+  function irAPaso(indice) {
+    detener();
+    tiempo = PASOS[indice].tiempo;
+    objetivo = null;
+    render();
+  }
+
+  elementos.anterior.addEventListener("click", () => irAPaso(indicePasoAnterior(tiempo)));
+  elementos.siguiente.addEventListener("click", () => irAPaso(indicePasoSiguiente(tiempo)));
+  elementos.animar.addEventListener("click", animarSiguiente);
+  elementos.recorrido.addEventListener("input", (evento) => {
+    detener();
+    tiempo = Number(evento.target.value);
+    objetivo = null;
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

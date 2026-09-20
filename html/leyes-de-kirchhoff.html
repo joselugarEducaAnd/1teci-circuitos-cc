@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-page-mss2y3ip-mf9divsm9">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.5">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="license" type="text/html" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<title>Leyes de Kirchhoff | Circuitos eléctricos de CC</title>
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<meta name="description" content="Circuitos eléctricos de CC. Tecnología e Ingeniería I.">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<script src="../idevices/udl-content/udl-content.js"></script><link rel="stylesheet" href="../idevices/udl-content/udl-content.css">
+<script src="../idevices/file-attachment/file-attachment.js"></script><link rel="stylesheet" href="../idevices/file-attachment/file-attachment.css">
+<script src="../idevices/scrambled-list/scrambled-list.js"></script><link rel="stylesheet" href="../idevices/scrambled-list/scrambled-list.css">
+<script src="../idevices/quick-questions/quick-questions.js"></script><link rel="stylesheet" href="../idevices/quick-questions/quick-questions.css">
+<script src="../libs/exe_effects/exe_effects.js"> </script>
+<link rel="stylesheet" href="../libs/exe_effects/exe_effects.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
+<script src="../libs/exe_math/tex-mml-svg.js"> </script>
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-mss2y3ip-mf9divsm9" id="skipNav">Saltar al contenido</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Circuitos de corriente continua</a>
+</li>
+<li> <a href="../html/carga-y-corriente-electrica.html" class="no-ch">Carga y corriente eléctrica</a>
+</li>
+<li> <a href="../html/magnitudes-electricas.html" class="daddy">Magnitudes eléctricas</a>
+<ul class="other-section">
+<li> <a href="../html/magnitudes-y-ley-de-ohm.html" class="no-ch">Magnitudes y ley de Ohm</a>
+</li>
+<li> <a href="../html/energia-potencia-y-efecto-joule.html" class="no-ch">Energía, potencia y efecto Joule</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/elementos-de-un-circuito-y-esquemas.html" class="no-ch">Elementos de un circuito y esquemas</a>
+</li>
+<li> <a href="../html/serie-paralelo-y-circuitos-mixtos.html" class="no-ch">Serie, paralelo y circuitos mixtos</a>
+</li>
+<li class="active"> <a href="../html/leyes-de-kirchhoff.html" class="active no-ch">Leyes de Kirchhoff</a>
+</li>
+<li> <a href="../html/motor-de-cc-constitucion-y-funcionamiento.html" class="no-ch">Motor de CC: constitución y funcionamiento</a>
+</li>
+<li> <a href="../html/motor-de-cc-modelo-y-comportamiento.html" class="no-ch">Motor de CC: modelo y comportamiento</a>
+</li>
+<li> <a href="../html/repaso-preparate-para-el-examen.html" class="no-ch">Repaso: prepárate para el examen</a>
+</li>
+</ul>
+</nav><main id="page-mss2y3ip-mf9divsm9" class="page"> 
+<header class="main-header">
+<div class="package-header"><p class="package-title">Circuitos eléctricos de CC</p></div>
+<div class="page-header"><h1 class="page-title">Leyes de Kirchhoff</h1></div>
+</header><div id="page-content-page-mss2y3ip-mf9divsm9" class="page-content">
+<article id="block-mss2y3iq-ubshcaubx" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Sesión 7. Leyes de Kirchhoff</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-mss2y3iq-mhcbal0vz" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-mss2y3iq-mhcbal0vz&quot;}">
+<style>.exe-content{--chrome:#943d48;--chrome-osc:#752933;--chrome-tinte:#f8eff0;--chrome-linea:#e4c8cc}</style><div class="bloque bloque-nota"><p class="bloque-titulo">Sesiones 7–8</p></div>
+<div class="marco-actividad"><p class="marco-titulo">Sesión 7 · Nudos y mallas</p><p>El objetivo es traducir la conservación de la carga y de la energía a ecuaciones, usando un convenio de signos coherente.</p></div><p><strong class="clave">Gustav Robert Kirchhoff</strong> enunció, en 1846, dos leyes que permiten la resolución sistemática de problemas de circuitos eléctricos que presentarían muchas dificultades de solución mediante la ley de Ohm. Dichas leyes están basadas en la <strong class="clave">conservación de la carga eléctrica</strong> (primera ley) y en la <strong class="clave">conservación de la energía</strong> (segunda ley).</p>
+<p>Para entender bien las leyes de Kirchhoff, primero tenemos que definir algunos conceptos de los circuitos:</p>
+<ul>
+<li><strong class="clave">Nudo:</strong> es cualquier punto de conexión de un circuito en el que se conecten 3 o más conductores. También se le puede llamar <strong class="clave">nodo</strong>.</li>
+<li><strong class="clave">Rama:</strong> parte del circuito comprendida entre dos nudos consecutivos.</li>
+<li><strong class="clave">Malla:</strong> camino en un circuito que permite, partiendo de un nudo cualquiera, volver a él sin pasar dos veces por la misma rama.</li>
+</ul>
+<p>Sabiendo esto, las leyes de Kirchhoff son las siguientes:</p>
+<div class="exe-fx exe-tabs">
+<h2>Primera ley de Kirchhoff</h2>
+<p>Esta ley también se conoce como <strong class="clave">ley de las corrientes</strong> o <strong class="clave">ley de los nudos</strong> (o nodos). Dice así:</p>
+<div class="marco-teoria">La suma de las intensidades de corriente que entran en un nudo es igual a la suma de las intensidades de corriente que salen del nudo.</div>
+<p>Otro enunciado más genérico es: "la suma algebraica de todas las intensidades de las corrientes que pasan por un nudo es igual a cero." O, matemáticamente:</p>
+<table border="1" style="width: auto; max-width: 100%; border-style: none; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%; border-style: none;">\[\sum_{k=1}^{n}i_{k}=0\]</td>
+</tr>
+</tbody>
+</table>
+<p>Para verlo más fácil, mira este ejemplo:</p>
+<p><img src="../content/resources/256px-KCL_-_Kirchhoffs_circuit_laws.svg.png" alt="Nudo con corrientes entrantes y salientes para aplicar la primera ley de Kirchhoff." width="256" height="249" style="display: block; margin-left: auto; margin-right: auto;" />En ese circuito de la figura, aplicando la primera ley de Kirchhoff, tendríamos que: <strong class="clave">\(i_{2}+i_{3}=i_{1}+i_{4}\)</strong>. Es decir, suma de intensidades que entran en el nudo = suma de las intensidades que salen del nudo.</p>
+<h2>Segunda ley de Kirchhoff</h2>
+<p>Esta ley también se conoce como ley de las tensiones o ley de las mallas. Dice así:</p>
+<div class="marco-teoria">La suma de las caídas de tensión que se producen en una malla del circuito es igual a la suma de las tensiones suministradas por las fuentes que hay en esa misma malla.</div>
+<p>Otro enunciado más genérico es: "la suma algebraica de las diferencias de potencial que hay en una malla es igual a cero." Matemáticamente sería:</p>
+<table border="1" style="width: auto; max-width: 100%; border-style: none; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%; border-style: none;">\[\sum_{k=1}^{n}v_{k}=0\]</td>
+</tr>
+</tbody>
+</table>
+<p>Vamos a ver un ejemplo de malla de un circuito:</p>
+<p><img src="../content/resources/Kirchhoff_voltage_law.svg.png" width="250" height="219" style="display: block; margin-left: auto; margin-right: auto;" / alt="Malla con cinco tensiones para aplicar la segunda ley de Kirchhoff.">En el circuito de la figura, aplicando la segunda ley de Kirchhoff tendríamos que: <strong class="clave">\(v_{4}=v_{1}+v_{2}+v_{3}\)</strong></p>
+<p>No hemos incluido v5 porque no pertenece a la malla que estamos considerando.</p>
+<p>Las caídas de tensión v<sub>1</sub>, v<sub>2</sub> y v<sub>3</sub> se pueden calcular mediante la ley de Ohm como \(v=R\cdot i\)</p>
+</div>
+<p>En la siguiente sección veremos la aplicación de las leyes de Kirchhoff para resolver un problema concreto, lo que te ayudará a fijar ideas.</p>
+</div>
+</div>
+</article><article id="block-mss2y3iq-lrrvxov7u" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Sesión 8. Problema guiado de Kirchhoff</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-mss2y3iq-rlths52nj" class="idevice_node udl-content" data-idevice-path="../idevices/udl-content/" data-idevice-type="udl-content">
+<div class="exe-udlContent exe-udlContent-expression"><section class="exe-udlContent-block"><div class="exe-udlContent-content"><div class="exe-udlContent-content-main"><div class="marco-actividad"><p class="marco-titulo">Sesión 8 · Resolución sistemática</p><p>Primero intenta plantear por tu cuenta los sentidos, la ecuación de nudo y las ecuaciones de malla. Después contrasta tu planteamiento con el desarrollo guiado.</p></div><p><span style="color: #0000ff;"><em>Este ejercicio es el número 7 de la colección de ejercicios que tenéis al final de esta sección para practicar.</em></span></p>
+<p>Encuentra la intensidad de corriente que circula por cada rama del siguiente circuito:</p>
+<p><img src="../content/resources/Circuito1.png" alt="Circuito con cuatro ramas y varias fuentes para resolver mediante las leyes de Kirchhoff." width="600" height="420" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<details style="margin: 1rem 0; border: 1px solid #d8c8d0; border-radius: .5rem; padding: .75rem 1rem; background: #fbfafc;"><summary style="cursor: pointer; font-weight: 700; color: #6d183b;">Abrir la resolución completa paso a paso</summary><p>Para resolver este tipo de circuitos empleando las leyes de Kirchhoff debemos ser sistemáticos y metódicos. Os recomiendo <strong class="clave">seguir los pasos tal y como os los voy explicando</strong> para tratar de establecer un sistema que podamos seguir siempre igual, minimizando la posibilidad de equivocarnos.</p>
+<p>En primer lugar, vamos a redibujar el circuito para nombrar todos los elementos que haya en él. Identificaremos las resistencias y las fuentes de tensión del circuito. Seguiremos la siguiente nomenclatura:</p>
+<ul>
+<li><strong><span style="color: #ff0000;">Resistencias:</span></strong> las llamaremos R<sub>1</sub>, R<sub>2</sub>, etc.</li>
+<li><strong><span style="color: #339966;">Fuentes de alimentación:</span></strong> las nombraremos E<sub>1</sub>, E<sub>2</sub>, etc.</li>
+</ul>
+<p>Como estamos en circuitos de corriente continua, voy a simbolizar las fuentes de tensión con el símbolo alternativo de la pila que ya vimos. Esto no es necesario, pero lo hago para que veáis que, mientras seamos consistentes con los símbolos, podemos utilizar los que queramos. Eso sí, es importante respetar las polaridades. El circuito quedaría así:</p>
+<p><img src="../content/resources/Circuito2.png" alt="Circuito de Kirchhoff con resistencias y fuentes identificadas." width="599" height="442" style="display: block; margin-left: auto; margin-right: auto;">A continuación, identificaremos los nudos y las mallas del circuito. Además, añadiremos las corrientes que circulan <em>por cada rama</em> del circuito. Tendremos en cuenta siempre lo siguiente:</p>
+<div class="exe-fx exe-accordion">
+<h2>Nudos</h2>
+<p>Los llamaremos&nbsp;A, B,&nbsp;etc. Aunque los nombraremos todos, luego la ley de nudos de Kirchhoff (primera ley) la aplicaremos en todos los nudos <strong class="clave">menos en uno</strong>.</p>
+<p>Da exactamente igual el sentido en que nombremos los nudos y también dará igual cuál dejar fuera a la hora de aplicar la ley de Kirchhoff. En este ejercicio de ejemplo hay dos nudos, a los que llamamos A y B.</p>
+<h2>Mallas</h2>
+<p>Las llamaremos&nbsp;M<sub>A</sub>, M<sub>B</sub>,&nbsp;etc. Indicaremos sobre el circuito el <strong class="clave">sentido de recorrido de cada malla</strong> mediante una flecha. Da exactamente igual el sentido elegido para cada malla, pero para no liarnos, recomiendo elegir siempre el <strong class="clave">sentido horario.</strong></p>
+<p>ATENCIÓN: hay muchas mallas en este circuito, pero no las necesitamos todas. En general, el número de mallas que necesitamos considerar será siempre:&nbsp;</p>
+<table border="1" style="width: auto; max-width: 100%; border-style: none; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%; border-style: none;">\[M=R-(N-1)\ donde\left\{\begin{array}{lll}<br>M:\mbox{n\' umero de mallas} \\ <br>R:\mbox{n\' umero de ramas} \\ <br>N:\mbox{n\' umero de nudos}<br>\end{array}\right. \]</td>
+</tr>
+</tbody>
+</table>
+<p>Como en este circuito tenemos 4 ramas (R) y&nbsp;2 nudos (N), necesitamos considerar \(M=4-(2-1)=3\) mallas: M<sub>A</sub>, M<sub>B</sub> y M<sub>C</sub>.</p>
+<h2>Intensidades de corriente</h2>
+<p>Las nombraremos I<sub>1</sub>, I<sub>2</sub>, etc. Las indicaremos mediante una flecha en cada rama del circuito.&nbsp;</p>
+<p>Dibujaremos las corrientes <span style="color: #339966;"><strong>con el sentido que queramos,</strong></span> da exactamente igual. Si obtenemos un valor positivo significa que habremos acertado con el sentido verdadero y si obtenemos un valor negativo significará que la corriente va al revés de como la dibujamos. Para evitar muchos resultados negativos, recomiendo pensar un poco cuál será el sentido más probable antes de dibujar las corrientes (<span style="color: #339966;"><strong>el sentido más probable será saliendo por el positivo de las fuentes</strong></span>).</p>
+</div>
+<p>Con esto, nuestro circuito quedaría así (he tomado las 3 mallas que se ven en la imagen, aunque podría haber considerado cualesquiera otras: la exterior del todo, la formada por el "cuadrado" interior del circuito sin la rama diagonal, etc.):</p>
+<p><img src="../content/resources/Circuito3.png" alt="Circuito de Kirchhoff con nudos, mallas y sentidos de corriente señalados." width="801" height="470" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>Ahora ya estamos en disposición de aplicar las <strong class="clave">leyes de Kirchhoff.&nbsp;</strong></p>
+<div class="exe-fx exe-accordion">
+<h2>Primera ley de Kirchhoff (ley de nudos)</h2>
+<p>La primera ley la aplicaremos <strong class="clave">en todos los nudos que haya en el circuito menos en uno.</strong> Como en este circuito hay sólo 2 nudos, la primera ley sólo la aplicaremos en uno de ellos. <strong class="clave">Da exactamente igual en cuál la apliquemos</strong>, yo lo voy a hacer en el <strong class="clave">nudo A</strong>:</p>
+<table border="1" style="width: auto; max-width: 100%; border-style: none; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%; border-style: none;">\[ \sum I_{ENTRAN}=\sum I_{SALEN}\]</td>
+</tr>
+<tr>
+<td style="width: 100%; border-style: none;">\[1^{a}LK(A): I_{2}=I_{1}+I_{3}+I_{4}\]</td>
+</tr>
+</tbody>
+</table>
+<h2>Segunda ley de Kirchhoff (ley de mallas)</h2>
+<p>La segunda ley la aplicamos <strong class="clave">en las mallas necesarias para tener el mismo número de ecuaciones que de incógnitas.</strong> Como en este circuito hay 4 ramas, el número de incógnitas es 4. Necesitamos 3 ecuaciones más, así que aplicamos la segunda ley en 3 mallas cualesquiera (en este caso, las que he marcado en la figura anterior). Es lo mismo que ya calculamos antes con la fórmula \(M=R-(N-1)\), aunque quizá te resulte más fácil pensarlo como completar hasta el número de incógnitas.</p>
+<p><strong class="clave">IMPORTANTE:</strong> para aplicar la segunda ley debemos tener en cuenta los <strong class="clave">signos</strong> de los términos de la ecuación.&nbsp;<strong class="clave">Seguiremos siempre estas reglas:</strong></p>
+<ul>
+<li><strong class="clave">Fuentes de tensión:</strong> si, al recorrer la malla en sentido horario, salimos de la fuente por su terminal positivo, la "E" irá positiva. Si salimos por el terminal negativo, la "E" irá negativa.&nbsp;</li>
+<li><strong class="clave">Resistencias:</strong> las caídas de tensión se expresarán en función de la intensidad aplicando la <strong class="clave">ley de Ohm</strong> <strong>(R·I)</strong>. Si, al recorrer la malla en sentido horario, pasamos por la corriente <strong class="clave">en el mismo sentido que tiene su flecha, irá con signo positivo</strong> en la ecuación. Si pasamos por la corriente <strong class="clave">en sentido contrario a su flecha, llevará signo negativo</strong> en la ecuación.</li>
+</ul>
+<p>Con todo esto en cuenta, la segunda ley de Kirchhoff aplicada a las mallas quedará:</p>
+<table border="1" style="width: auto; max-width: 100%; border-style: none; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%; border-style: none;">\[\sum E=\sum R\cdot I\]</td>
+</tr>
+<tr>
+<td style="width: 100%; border-style: none;">\[\left\{\begin{array}{lll}<br>2^{a}LK(M_{A}): E_{1}=R_{1}\cdot I_{1}+R_{2}\cdot I_{2} \\ <br>2^{a}LK(M_{B}): -E_{3}=-R_{2}\cdot I_{2}-R_{3}\cdot I_{3} \\ <br>2^{a}LK(M_{C}): E_{3}-E_{4}=R_{3}\cdot I_{3}-R_{4}\cdot I_{4}<br>\end{array}\right.\]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Recapitulando, tendremos el siguiente sistema de ecuaciones:</p>
+<table border="0" style="width: 100%; border-style: none;" cellpadding="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p>\[ \left\{\begin{array}{rrrr}<br>I_{2}=I_{1}+I_{3}+I_{4}\ \ \ \ \ \&nbsp; (1) \\<br>E_{1}=R_{1}\cdot I_{1}+R_{2}\cdot I_{2} \ \ \ \ \ \&nbsp; (2) \\<br>-E_{3}=-R_{2}\cdot I_{2}-R_{3}\cdot I_{3} \ \ \ \ \ \&nbsp; (3)\\<br>E_{3}-E_{4}=R_{3}\cdot I_{3}-R_{4}\cdot I_{4} \ \ \ \ \ \&nbsp; (4)<br>\end{array}\right.\]</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><br>Sustituyendo los valores de los datos del problema, y cambiando de signo la ecuación (3) para simplificar, obtenemos lo siguiente:</p>
+<table border="0" style="width: 100%; border-style: none;" cellpadding="0">
+<tbody>
+<tr>
+<td style="width: 100%;">
+<p>\[ \left\{\begin{array}{rrrr}<br>I_{2}=I_{1}+I_{3}+I_{4}\ \ \ \ \ \&nbsp; (1) \\<br>3=2\cdot I_{1}+8\cdot I_{2} \ \ \ \ \ \&nbsp; (2) \\<br>9=8\cdot I_{2}+4\cdot I_{3} \ \ \ \ \ \&nbsp; (3)\\<br>-3=4\cdot I_{3}-6\cdot I_{4} \ \ \ \ \ \&nbsp; (4)<br>\end{array}\right.\]</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><br>Podemos resolver el sistema por el método que deseemos. Planteamos aquí una posible solución.</p>
+<p>Vamos a intentar obtener expresiones de I<sub>2</sub>, I<sub>3</sub>&nbsp;e I<sub>4</sub>&nbsp;<strong class="clave">en función de I<sub>1</sub></strong>. Luego sustituiremos estas expresiones en la ecuación (1) para obtener el valor numérico de I<sub>1</sub>&nbsp;y ya podremos calcular el resto fácilmente.</p>
+<p><strong class="clave">Expresión de I<sub>2</sub>:</strong> la obtenemos directamente despejando de (2):</p>
+<table border="1" style="width: auto; max-width: 100%; border-style: none; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%; border-style: none;">\[i_{2}=\frac{3-2\cdot i_{1}}{8} \ \ \&nbsp;\ \&nbsp;\&nbsp;\&nbsp;(a)\]</td>
+</tr>
+</tbody>
+</table>
+<p><strong class="clave">Expresión de I<sub>3</sub>:</strong> la obtenemos restando las ecuaciones (2)-(3) y despejando:</p>
+<table border="1" style="width: auto; max-width: 100%; border-style: none; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%; border-style: none;">$$ \begin{array}{lll}<br>3=2\cdot i_{1}+ 8\cdot i_{2} \\ <br>-9= -8\cdot i_{2}-4\cdot i_{3} \\ <br>\hline <br>-6=2\cdot i_{1}-4 \cdot i_{3}<br>\end{array}$$</td>
+</tr>
+</tbody>
+</table>
+<p>Por lo tanto:</p>
+<table border="1" style="width: auto; max-width: 100%; border-style: none; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%; border-style: none;">$$i_{3}=\frac{6+2\cdot i_{1}}{4} \ \ \&nbsp;\ \&nbsp;\&nbsp;\&nbsp;(b) $$</td>
+</tr>
+</tbody>
+</table>
+<p><strong class="clave">Expresión de&nbsp;I<sub>4</sub>:&nbsp;</strong> la obtenemos sustituyendo (b) en (4) y despejando:</p>
+<table border="1" style="width: auto; max-width: 100%; border-style: none; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%; border-style: none;">$$-3=4\cdot \frac{6+2\cdot i_{1}}{ 4}-6\cdot i_{4}\ \Rightarrow \ i_{4}=\frac{9+2\cdot i_{1}}{6} \ \ \&nbsp;\ \&nbsp;\&nbsp;\&nbsp;(c)$$</td>
+</tr>
+</tbody>
+</table>
+<p>Ya podemos, por consiguiente, calcular I<sub>1</sub>&nbsp;simplemente sustituyendo (a), (b) y (c) en (1) y despejando:</p>
+<table border="0" style="width: auto; max-width: 100%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">$$\frac{3-2\cdot i_{1}}{8}=i_{1}+\frac{6+2\cdot i_{1}}{4}+\frac{9+2\cdot i_{1}}{6}$$</td>
+</tr>
+</tbody>
+</table>
+<p>El m.c.m. de 8, 4 y 6 es 24, así que podemos poner:</p>
+<table border="0" style="width: auto; max-width: 100%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">$$\frac{9-6\cdot i_{1}}{24}=\frac{24\cdot i_{1}}{24}+\frac{36+12\cdot i_{1}}{24}+\frac{36+8\cdot i_{1}}{24}$$</td>
+</tr>
+</tbody>
+</table>
+<p>De donde se tiene que:</p>
+<table border="0" style="width: auto; max-width: 100%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">$$9-6\cdot i_{1}=24\cdot i_{1}+36+12\cdot i_{1}+36+8\cdot i_{1}$$</td>
+</tr>
+</tbody>
+</table>
+<p>Reordenando y despejando:</p>
+<table border="0" style="width: 10px; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 91.5625px;">$$-50\cdot i_{1}=63 \ \Rightarrow i_{1}=-\frac{63}{50}= -1,26\ A $$</td>
+</tr>
+</tbody>
+</table>
+<p>Ya es trivial calcular el resto de intensidades, sustituyendo el valor calculado para I<sub>1&nbsp;</sub>en las ecuaciones (a), (b) y (c):</p>
+<table border="0" style="width: auto; max-width: 100%; border-style: none; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">$$ i_{2}=\frac{3-2\cdot i_{1}}{8}=\frac{3-2\cdot (-1,26)}{8}= 0,69\ A$$</td>
+</tr>
+<tr>
+<td style="width: 100%;">$$ i_{3}=\frac{6+2\cdot i_{1}}{4}=\frac{6+2\cdot (-1,26)}{4}= 0,87\ A$$</td>
+</tr>
+<tr>
+<td style="width: 100%;">$$ i_{4}=\frac{9+2\cdot i_{1}}{6}=\frac{9+2\cdot (-1,26)}{6}=1,08\ A$$</td>
+</tr>
+</tbody>
+</table>
+<p><br>A la vista de los resultados, se confirma que <strong class="clave">el sentido de circulación de la corriente es el mismo que hemos dibujado para I<sub>2</sub>, I<sub>3</sub>&nbsp;e I<sub>4</sub>&nbsp;y es el contrario del que hemos dibujado para I<sub>1</sub>.</strong> Esto implicaría que <strong class="clave">la batería E<sub>1</sub>&nbsp;no está aportando energía al circuito, sino que se estaría cargando.</strong></p></details></div></div></section></div>
+</div>
+</div>
+</article><article id="block-mss2y3iq-s6fl9ogvt" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/file.png" alt="" style="display:block;object-fit:contain;">
+</div>
+<h1 class="box-title">Sesión 8. Práctica adicional de Kirchhoff</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-mss2y3iq-kv566gob9" class="idevice_node file-attachment" data-idevice-path="../idevices/file-attachment/" data-idevice-type="file-attachment" data-idevice-component-type="json" data-idevice-json-data="{&quot;intro&quot;:&quot;&lt;p&gt;Aquí tienes una colección de ejercicios de resolución de circuitos mediante leyes de Kirchhoff para que practiques en casa.&lt;/p&gt;&quot;,&quot;showDescriptions&quot;:true,&quot;attachments&quot;:[{&quot;url&quot;:&quot;../content/resources/EJERCICIOS KIRCHHOFF.pdf&quot;,&quot;filename&quot;:&quot;EJERCICIOS KIRCHHOFF.pdf&quot;,&quot;mimeType&quot;:&quot;&quot;,&quot;size&quot;:0,&quot;title&quot;:&quot;&quot;,&quot;description&quot;:&quot;&quot;}]}" data-idevice-template="file-attachment.html">
+<div class="fileAttachment-IDevice"><div class="fileAttachment-intro"><p>Aquí tienes una colección de ejercicios de resolución de circuitos mediante leyes de Kirchhoff para que practiques en casa.</p></div><ul class="fileAttachment-list"><li class="fileAttachment-item fileAttachment-item--file"><a class="fileAttachment-link" href="../content/resources/EJERCICIOS KIRCHHOFF.pdf" download="EJERCICIOS KIRCHHOFF.pdf"><span class="fileAttachment-text"><span class="fileAttachment-title">EJERCICIOS KIRCHHOFF.pdf</span></span></a></li></ul></div>
+</div>
+</div>
+</article><article id="block-1789486351585-i3g15yzem" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Lista desordenada</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-1789486351312-4wm1mu7ag" class="idevice_node scrambled-list" data-idevice-path="../idevices/scrambled-list/" data-idevice-type="scrambled-list" data-idevice-component-type="json" data-idevice-json-data="{&quot;typeGame&quot;:&quot;ScrambledList&quot;,&quot;instructions&quot;:&quot;&lt;p&gt;Ordena el planteamiento de Kirchhoff. Elegir sentidos no es adivinar el resultado: la solución negativa corregirá una elección opuesta a la corriente real.&lt;/p&gt;&quot;,&quot;textAfter&quot;:&quot;&quot;,&quot;afterElement&quot;:&quot;&quot;,&quot;options&quot;:[&quot;Redibujar el circuito y nombrar resistencias, fuentes, nudos y ramas&quot;,&quot;Asignar un sentido de referencia a cada corriente y un recorrido a cada malla independiente&quot;,&quot;Escribir ecuaciones de nudo independientes aplicando conservación de la carga&quot;,&quot;Escribir las ecuaciones de malla necesarias con un convenio de signos coherente&quot;,&quot;Sustituir cada caída de tensión resistiva mediante V = R·I&quot;,&quot;Resolver el sistema de ecuaciones&quot;,&quot;Interpretar los signos y comprobar las ecuaciones de nudo y malla con los resultados&quot;],&quot;time&quot;:0,&quot;buttonText&quot;:&quot;Comprobar&quot;,&quot;rightText&quot;:&quot;Correcto. El circuito se traduce primero a variables y convenios; después se escriben las ecuaciones, se resuelve y se interpretan los signos. Una corriente negativa no invalida el cálculo: indica que circula al revés de la flecha elegida.&quot;,&quot;wrongText&quot;:&quot;Revisa la dependencia entre pasos: no se pueden escribir mallas antes de fijar recorridos ni sustituir R·I antes de definir las corrientes. Resolver el sistema no es el final; aún hay que interpretar signos y verificar nudos y mallas.&quot;,&quot;isScorm&quot;:0,&quot;textButtonScorm&quot;:&quot;Guardar la puntuación&quot;,&quot;repeatActivity&quot;:true,&quot;weighted&quot;:100,&quot;evaluation&quot;:false,&quot;evaluationID&quot;:&quot;ba045cdc-0c42-4929-9f1a-60ed64d395a5&quot;,&quot;main&quot;:&quot;slidevice-1785313481782-rk7vxek4h&quot;,&quot;msgs&quot;:{&quot;msgScoreScorm&quot;:&quot;La puntuación no se puede guardar porque esta página no forma parte  de un paquete SCORM.&quot;,&quot;msgYouScore&quot;:&quot;Su puntuación&quot;,&quot;msgScore&quot;:&quot;Puntuación&quot;,&quot;msgWeight&quot;:&quot;Peso&quot;,&quot;msgYouLastScore&quot;:&quot;La última puntuación guardada es&quot;,&quot;msgOnlySaveScore&quot;:&quot;¡Solo puede guardar la puntuación una vez!&quot;,&quot;msgOnlySave&quot;:&quot;Solo puede guardar una vez&quot;,&quot;msgOnlySaveAuto&quot;:&quot;Su puntuación se guardará después de cada pregunta. Solo puede jugar una vez.&quot;,&quot;msgSaveAuto&quot;:&quot;Su puntuación se guardará automáticamente después de cada pregunta.&quot;,&quot;msgSeveralScore&quot;:&quot;Puede guardar la puntuación tantas veces como quiera&quot;,&quot;msgPlaySeveralTimes&quot;:&quot;Puede realizar esta actividad cuantas veces quiera&quot;,&quot;msgActityComply&quot;:&quot;Ya ha realizado esta actividad.&quot;,&quot;msgUncompletedActivity&quot;:&quot;Actividad no completada&quot;,&quot;msgSuccessfulActivity&quot;:&quot;Actividad superada. Puntuación: %s&quot;,&quot;msgUnsuccessfulActivity&quot;:&quot;Actividad no superada. Puntuación: %s&quot;,&quot;msgTypeGame&quot;:&quot;Lista desordenada&quot;,&quot;msgStartGame&quot;:&quot;Pulsa aquí para empezar&quot;,&quot;msgSubmit&quot;:&quot;Enviar&quot;,&quot;msgPlayStart&quot;:&quot;Pulsa aquí para jugar&quot;,&quot;msgTime&quot;:&quot;Tiempo por pregunta&quot;,&quot;msgCheck&quot;:&quot;Comprobar&quot;,&quot;msgSaveScore&quot;:&quot;Guardar la puntuación&quot;,&quot;msgTestFailed&quot;:&quot;No has superado la prueba. Inténtalo de nuevo&quot;,&quot;msgRetryAttempts&quot;:&quot;Has cometido %s errores. Te quedan %s intentos. ¿Quieres intentarlo de nuevo?&quot;},&quot;scorerp&quot;:0,&quot;idevice&quot;:&quot;idevice_node&quot;,&quot;showSolutions&quot;:true,&quot;attemptsNumber&quot;:1,&quot;id&quot;:&quot;idevice-1789486351312-4wm1mu7ag&quot;}" data-idevice-template="scrambled-list.html">
+<div class="exe-sortableList" id="slidevice-1789486351312-4wm1mu7ag" scorm=false>
+    <div class="game-evaluation-ids js-hidden" data-id="idevice-1789486351312-4wm1mu7ag" data-evaluationb="false" data-evaluationid="ba045cdc-0c42-4929-9f1a-60ed64d395a5"></div>
+    <div class="exe-sortableList-instructions"><p>Ordena el planteamiento de Kirchhoff. Elegir sentidos no es adivinar el resultado: la solución negativa corregirá una elección opuesta a la corriente real.</p></div>
+    <ul class="exe-sortableList-list"><li data-orig-index="0">Redibujar el circuito y nombrar resistencias, fuentes, nudos y ramas</li>
+<li data-orig-index="1">Asignar un sentido de referencia a cada corriente y un recorrido a cada malla independiente</li>
+<li data-orig-index="2">Escribir ecuaciones de nudo independientes aplicando conservación de la carga</li>
+<li data-orig-index="3">Escribir las ecuaciones de malla necesarias con un convenio de signos coherente</li>
+<li data-orig-index="4">Sustituir cada caída de tensión resistiva mediante V = R·I</li>
+<li data-orig-index="5">Resolver el sistema de ecuaciones</li>
+<li data-orig-index="6">Interpretar los signos y comprobar las ecuaciones de nudo y malla con los resultados</li></ul>
+    <div style="display:none">
+        <p class="exe-sortableList-buttonText">Comprobar</p>
+        <p class="exe-sortableList-rightText">Correcto. El circuito se traduce primero a variables y convenios; después se escriben las ecuaciones, se resuelve y se interpretan los signos. Una corriente negativa no invalida el cálculo: indica que circula al revés de la flecha elegida.</p>
+        <p class="exe-sortableList-wrongText">Revisa la dependencia entre pasos: no se pueden escribir mallas antes de fijar recorridos ni sustituir R·I antes de definir las corrientes. Resolver el sistema no es el final; aún hay que interpretar signos y verificar nudos y mallas.</p>
+    </div>
+    <div class="exe-scorm-message"></div>
+    
+</div>
+</div>
+</div>
+</article><article id="block-1789486351413-zzp43ryi6" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Test</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-1789486351747-ch8iv2ime" class="idevice_node quick-questions" data-idevice-path="../idevices/quick-questions/" data-idevice-type="quick-questions">
+<div class="quext-IDevice"><div class="game-evaluation-ids js-hidden" data-id="idevice-1789486351747-ch8iv2ime" data-evaluationb="false" data-evaluationid="ba045cdc-0c42-4929-9f1a-60ed64d395a5"></div><div class="quext-instructions QXTP-instructions"><p>Usa el convenio indicado. Las opciones incorrectas reproducen un signo cambiado en la ecuación de nudo o en una ecuación de malla.</p></div><div class="quext-version js-hidden">2</div><div class="quext-feedback-game"></div><div class="quext-DataGame js-hidden">%E9%B0%F3%E1%FB%F5%FC%F3%E6%E7%E0%F3%B0%A8%B2%B0%B0%BE%B2%B0%F3%E7%E6%FA%FD%E0%B0%A8%B2%B0%B0%BE%B2%B0%F3%E7%E6%FA%FD%E0%C4%FB%F6%F7%FD%B0%A8%B2%B0%B0%BE%B2%B0%E6%EB%E2%F7%D5%F3%FF%F7%B0%A8%B2%B0%C3%E7%D7%EA%E6%B0%BE%B2%B0%F7%FC%F6%C4%FB%F6%F7%FD%B0%A8%B2%A2%BE%B2%B0%FB%F6%C4%FB%F6%F7%FD%B0%A8%B2%B0%B0%BE%B2%B0%E1%E6%F3%E0%E6%C4%FB%F6%F7%FD%B0%A8%B2%A2%BE%B2%B0%FB%FC%E1%E6%E0%E7%F1%E6%FB%FD%FC%E1%D7%EA%F7%B0%A8%B2%B0%B7%A1%D1%E2%B7%A1%D7%C7%E1%F3%B7%A0%A2%F7%FE%B7%A0%A2%F1%FD%FC%E4%F7%FC%FB%FD%B7%A0%A2%FB%FC%F6%FB%F1%F3%F6%FD%BC%B7%A0%A2%DE%F3%E1%B7%A0%A2%FD%E2%F1%FB%FD%FC%F7%E1%B7%A0%A2%FB%FC%F1%FD%E0%E0%F7%F1%E6%F3%E1%B7%A0%A2%E0%F7%E2%E0%FD%F6%E7%F1%F7%FC%B7%A0%A2%E7%FC%B7%A0%A2%E1%FB%F5%FC%FD%B7%A0%A2%F1%F3%FF%F0%FB%F3%F6%FD%B7%A0%A2%F7%FC%B7%A0%A2%FE%F3%B7%A0%A2%F7%F1%E7%F3%F1%FB%B7%D1%A1%B7%D0%A1%FC%B7%A0%A2%F6%F7%B7%A0%A2%FC%E7%F6%FD%B7%A0%A2%FD%B7%A0%A2%F7%FC%B7%A0%A2%E7%FC%F3%B7%A0%A2%F7%F1%E7%F3%F1%FB%B7%D1%A1%B7%D0%A1%FC%B7%A0%A2%F6%F7%B7%A0%A2%FF%F3%FE%FE%F3%BC%B7%A1%D1%B7%A0%D4%E2%B7%A1%D7%B0%BE%B2%B0%FB%FC%E1%E6%E0%E7%F1%E6%FB%FD%FC%E1%B0%A8%B2%B0%C7%E1%F3%B2%F7%FE%B2%F1%FD%FC%E4%F7%FC%FB%FD%B2%FB%FC%F6%FB%F1%F3%F6%FD%BC%B2%DE%F3%E1%B2%FD%E2%F1%FB%FD%FC%F7%E1%B2%FB%FC%F1%FD%E0%E0%F7%F1%E6%F3%E1%B2%E0%F7%E2%E0%FD%F6%E7%F1%F7%FC%B2%E7%FC%B2%E1%FB%F5%FC%FD%B2%F1%F3%FF%F0%FB%F3%F6%FD%B2%F7%FC%B2%FE%F3%B2%F7%F1%E7%F3%F1%FBa%FC%B2%F6%F7%B2%FC%E7%F6%FD%B2%FD%B2%F7%FC%B2%E7%FC%F3%B2%F7%F1%E7%F3%F1%FBa%FC%B2%F6%F7%B2%FF%F3%FE%FE%F3%BC%B0%BE%B2%B0%E1%FA%FD%E5%DF%FB%FC%FB%FF%FB%E8%F7%B0%A8%B2%F4%F3%FE%E1%F7%BE%B2%B0%FD%E2%E6%FB%FD%FC%E1%C0%F3%FF%F6%FD%FC%B0%A8%B2%E6%E0%E7%F7%BE%B2%B0%F3%FC%E1%E5%F7%E0%E1%C0%F3%FF%F6%FD%FC%B0%A8%B2%E6%E0%E7%F7%BE%B2%B0%E1%FA%FD%E5%C1%FD%FE%E7%E6%FB%FD%FC%B0%A8%B2%E6%E0%E7%F7%BE%B2%B0%E6%FB%FF%F7%C1%FA%FD%E5%C1%FD%FE%E7%E6%FB%FD%FC%B0%A8%B2%A1%BE%B2%B0%E7%E1%F7%DE%FB%E4%F7%E1%B0%A8%B2%E6%E0%E7%F7%BE%B2%B0%FC%E7%FF%F0%F7%E0%DE%FB%E4%F7%E1%B0%A8%B2%A1%BE%B2%B0%FB%E6%FB%FC%F7%E0%F3%E0%EB%B0%A8%B2%E9%B0%E1%FA%FD%E5%D1%FE%E7%F7%B0%A8%B2%F4%F3%FE%E1%F7%BE%B2%B0%F1%FE%E7%F7%D5%F3%FF%F7%B0%A8%B2%B0%B0%BE%B2%B0%E2%F7%E0%F1%F7%FC%E6%F3%F5%F7%D1%FE%E7%F7%B0%A8%B2%A6%A2%BE%B2%B0%E1%FA%FD%E5%D1%FD%F6%F7%D3%F1%F1%F7%E1%E1%B0%A8%B2%F4%F3%FE%E1%F7%BE%B2%B0%F1%FD%F6%F7%D3%F1%F1%F7%E1%E1%B0%A8%B2%B0%B0%BE%B2%B0%FF%F7%E1%E1%F3%F5%F7%D1%FD%F6%F7%D3%F1%F1%F7%E1%E1%B0%A8%B2%B0%B0%EF%BE%B2%B0%E3%E7%F7%E1%E6%FB%FD%FC%E1%D5%F3%FF%F7%B0%A8%B2%C9%E9%B0%E6%EB%E2%F7%B0%A8%B2%A2%BE%B2%B0%E6%FB%FF%F7%B0%A8%B2%A2%BE%B2%B0%FC%E7%FF%F0%F7%E0%DD%E2%E6%FB%FD%FC%E1%B0%A8%B2%A1%BE%B2%B0%EA%B0%A8%B2%A2%BE%B2%B0%EB%B0%A8%B2%A2%BE%B2%B0%F3%E7%E6%FA%FD%E0%B0%A8%B2%B0%B0%BE%B2%B0%F3%FE%E6%B0%A8%B2%B0%B0%BE%B2%B0%F1%E7%E1%E6%FD%FF%C1%F1%FD%E0%F7%B0%A8%B2%A3%BE%B2%B0%E7%E0%FE%B0%A8%B2%B0%B0%BE%B2%B0%F3%E7%F6%FB%FD%B0%A8%B2%B0%B0%BE%B2%B0%E1%FD%E7%FC%F6%C4%FB%F6%F7%FD%B0%A8%B2%A3%BE%B2%B0%FB%FF%F3%F5%F7%C4%FB%F6%F7%FD%B0%A8%B2%A3%BE%B2%B0%FB%C4%FB%F6%F7%FD%B0%A8%B2%A2%BE%B2%B0%F4%C4%FB%F6%F7%FD%B0%A8%B2%A2%BE%B2%B0%E1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%B2%A2%BE%B2%B0%E6%C1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%B2%A2%BE%B2%B0%F7%C6%F7%EA%E6%B0%A8%B2%B0%B0%BE%B2%B0%E3%E7%F7%EA%E6%FB%FD%FC%B0%A8%B2%B0%D7%FC%B2%E7%FC%B2%FC%E7%F6%FD%BE%B2%DB%u2013%B2%F7%FC%E6%E0%F3%B2%F7%B2%DB%u2010%B2%F7%B2%DB%u2011%B2%E1%F3%FE%F7%FC%BC%B2-%C3%E7%7B%B2%F7%F1%E7%F3%F1%FBa%FC%B2%F7%EA%E2%E0%F7%E1%F3%B2%F1%FD%FC%E1%F7%E0%E4%F3%F1%FBa%FC%B2%F6%F7%B2%FE%F3%B2%F1%F3%E0%F5%F3%AD%B0%BE%B2%B0%FD%E2%E6%FB%FD%FC%E1%B0%A8%B2%C9%B0%DB%u2013%B2%AF%B2%DB%u2010%B2%B9%B2%DB%u2011%B0%BE%B2%B0%DB%u2013%B2%B9%B2%DB%u2010%B2%AF%B2%DB%u2011%B0%BE%B2%B0%DB%u2013%B2%B9%B2%DB%u2010%B2%B9%B2%DB%u2011%B2%AF%B2%A3%B0%CF%BE%B2%B0%E1%FD%FE%E7%E6%FB%FD%FC%B0%A8%B2%A2%BE%B2%B0%FF%E1%F5%DA%FB%E6%B0%A8%B2%B0%D1%FD%E0%E0%F7%F1%E6%FD%BC%B2%DE%F3%B2%E1%E7%FF%F3%B2%F6%F7%B2%FB%FC%E6%F7%FC%E1%FB%F6%F3%F6%F7%E1%B2%E3%E7%F7%B2%F7%FC%E6%E0%F3%FC%B2%F6%F7%F0%F7%B2%FB%F5%E7%F3%FE%F3%E0%B2%FE%F3%B2%E1%E7%FF%F3%B2%F6%F7%B2%FE%F3%E1%B2%E3%E7%F7%B2%E1%F3%FE%F7%FC%A8%B2%DB%u2013%B2%AF%B2%DB%u2010%B2%B9%B2%DB%u2011%BC%B0%BE%B2%B0%FF%E1%F5%D7%E0%E0%FD%E0%B0%A8%B2%B0%DC%FD%B2%E1%F7%B2%E1%E7%FF%F3%FC%B2%E6%FD%F6%F3%E1%B2%F1%FD%FC%B2%F7%FE%B2%FF%FB%E1%FF%FD%B2%E1%FB%F5%FC%FD%B2%E1%FB%B2%E1%F7%B2%E7%E1%F3%B2%FE%F3%B2%F4%FD%E0%FF%F3%B2%F7%FC%E6%E0%F3%F6%F3%E1%B2%AF%B2%E1%F3%FE%FB%F6%F3%E1%BC%B2%D1%FD%FF%FD%B2%DB%u2013%B2%F7%FC%E6%E0%F3%B2%F7%B2%DB%u2010%B2%F7%B2%DB%u2011%B2%E1%F3%FE%F7%FC%BE%B2%FE%F3%B2%F7%F1%E7%F3%F1%FBa%FC%B2%F7%E1%B2%DB%u2013%B2%AF%B2%DB%u2010%B2%B9%B2%DB%u2011%BC%B0%EF%BE%B2%E9%B0%E6%EB%E2%F7%B0%A8%B2%A2%BE%B2%B0%E6%FB%FF%F7%B0%A8%B2%A2%BE%B2%B0%FC%E7%FF%F0%F7%E0%DD%E2%E6%FB%FD%FC%E1%B0%A8%B2%A1%BE%B2%B0%EA%B0%A8%B2%A2%BE%B2%B0%EB%B0%A8%B2%A2%BE%B2%B0%F3%E7%E6%FA%FD%E0%B0%A8%B2%B0%B0%BE%B2%B0%F3%FE%E6%B0%A8%B2%B0%B0%BE%B2%B0%F1%E7%E1%E6%FD%FF%C1%F1%FD%E0%F7%B0%A8%B2%A3%BE%B2%B0%E7%E0%FE%B0%A8%B2%B0%B0%BE%B2%B0%F3%E7%F6%FB%FD%B0%A8%B2%B0%B0%BE%B2%B0%E1%FD%E7%FC%F6%C4%FB%F6%F7%FD%B0%A8%B2%A3%BE%B2%B0%FB%FF%F3%F5%F7%C4%FB%F6%F7%FD%B0%A8%B2%A3%BE%B2%B0%FB%C4%FB%F6%F7%FD%B0%A8%B2%A2%BE%B2%B0%F4%C4%FB%F6%F7%FD%B0%A8%B2%A2%BE%B2%B0%E1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%B2%A2%BE%B2%B0%E6%C1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%B2%A2%BE%B2%B0%F7%C6%F7%EA%E6%B0%A8%B2%B0%B0%BE%B2%B0%E3%E7%F7%EA%E6%FB%FD%FC%B0%A8%B2%B0%C7%FC%B2%F1%FB%E0%F1%E7%FB%E6%FD%B2%E3%E7%F7%F6%F3%B2%F6%F7%E1%F1%E0%FB%E6%FD%B2%E2%FD%E0%B2%DB%u2013%B2%AF%B2%DB%u2010%B2%B9%B2%DB%u2011%BE%B2%A3%A0%B2%AF%B2%A0%DB%u2013%B2%B9%B2%A6%DB%u2010%B2%EB%B2%A4%B2%AF%B2%A0%DB%u2013%B2%B9%B2%A1%DB%u2011%BC%B2-%C3%E7%7B%B2%E1%FD%FE%E7%F1%FBa%FC%B2%E1%F3%E6%FB%E1%F4%F3%F1%F7%B2%E1%FB%FF%E7%FE%E6s%FC%F7%F3%FF%F7%FC%E6%F7%B2%FE%F3%E1%B2%E6%E0%F7%E1%B2%F7%F1%E7%F3%F1%FB%FD%FC%F7%E1%AD%B0%BE%B2%B0%FD%E2%E6%FB%FD%FC%E1%B0%A8%B2%C9%B0%DB%u2013%B2%AF%B2%A0%BE%A1%A3%B2%D3%A9%B2%DB%u2010%B2%AF%B2%A3%BE%AA%A7%B2%D3%A9%B2%DB%u2011%B2%AF%B2%A2%BE%A6%A4%B2%D3%B0%BE%B2%B0%DB%u2013%B2%AF%B2%u2280%A2%BE%AA%A4%B2%D3%A9%B2%DB%u2010%B2%AF%B2%A1%BE%A6%A1%B2%D3%A9%B2%DB%u2011%B2%AF%B2%A0%BE%A7%A5%B2%D3%B0%BE%B2%B0%DB%u2013%B2%AF%B2%A3%BE%A0%A2%B2%D3%A9%B2%DB%u2010%B2%AF%B2%A0%BE%A6%A2%B2%D3%A9%B2%DB%u2011%B2%AF%B2%u2280%A3%BE%A0%A2%B2%D3%B0%CF%BE%B2%B0%E1%FD%FE%E7%E6%FB%FD%FC%B0%A8%B2%A2%BE%B2%B0%FF%E1%F5%DA%FB%E6%B0%A8%B2%B0%D1%FD%E0%E0%F7%F1%E6%FD%BC%B2%C1%FB%FC%B2%E0%F7%F6%FD%FC%F6%F7%F3%E0%BE%B2%FE%F3%E1%B2%FB%FC%E6%F7%FC%E1%FB%F6%F3%F6%F7%E1%B2%E1%FD%FC%B2%A1%A2%BD%A3%A1%BE%B2%A0%A6%BD%A3%A1%B2%EB%B2%A4%BD%A3%A1%B2%D3%BC%B2%D1%E7%FF%E2%FE%F7%FC%B2%A1%A2%BD%A3%A1%B2%AF%B2%A0%A6%BD%A3%A1%B2%B9%B2%A4%BD%A3%A1%B2%EB%B2%FE%F3%E1%B2%F6%FD%E1%B2%F7%F1%E7%F3%F1%FB%FD%FC%F7%E1%B2%F6%F7%B2%FF%F3%FE%FE%F3%BC%B0%BE%B2%B0%FF%E1%F5%D7%E0%E0%FD%E0%B0%A8%B2%B0%C1%E7%E1%E6%FB%E6%E7%EB%F7%B2%F1%F3%F6%F3%B2%E6%F7%E0%FC%F3%B2%F7%FC%B2%FE%F3%B2%F7%F1%E7%F3%F1%FBa%FC%B2%F6%F7%B2%FC%E7%F6%FD%B2%F3%FC%E6%F7%E1%B2%F6%F7%B2%E0%F7%E2%F7%E6%FB%E0%B2%E6%FD%F6%F3%B2%FE%F3%B2%E0%F7%E1%FD%FE%E7%F1%FBa%FC%BC%B2%DE%F3%B2%E1%F7%F5%E7%FC%F6%F3%B2%F1%FD%E0%E0%F7%E1%E2%FD%FC%F6%F7%B2%F3%B2%F1%F3%FF%F0%FB%F3%E0%B2%F7%FE%B2%E1%FB%F5%FC%FD%B2%F6%F7%B2%DB%u2010%B2%F7%FC%B2%F7%FE%B2%FC%E7%F6%FD%A9%B2%FE%F3%B2%E6%F7%E0%F1%F7%E0%F3%BE%B2%F3%B2%F1%F3%FF%F0%FB%F3%E0%B2%F7%FE%B2%E1%FB%F5%FC%FD%B2%F6%F7%B2%A1%DB%u2011%B2%F7%FC%B2%FE%F3%B2%E1%F7%F5%E7%FC%F6%F3%B2%FF%F3%FE%FE%F3%BC%B2%DE%F3%B2%E1%FD%FE%E7%F1%FBa%FC%B2%F1%FD%FA%F7%E0%F7%FC%E6%F7%B2%F7%E1%B2%A0%BE%A1%A3%B2%D3%BE%B2%A3%BE%AA%A7%B2%D3%B2%EB%B2%A2%BE%A6%A4%B2%D3%BC%B0%EF%BE%B2%E9%B0%E6%EB%E2%F7%B0%A8%B2%A2%BE%B2%B0%E6%FB%FF%F7%B0%A8%B2%A2%BE%B2%B0%FC%E7%FF%F0%F7%E0%DD%E2%E6%FB%FD%FC%E1%B0%A8%B2%A1%BE%B2%B0%EA%B0%A8%B2%A2%BE%B2%B0%EB%B0%A8%B2%A2%BE%B2%B0%F3%E7%E6%FA%FD%E0%B0%A8%B2%B0%B0%BE%B2%B0%F3%FE%E6%B0%A8%B2%B0%B0%BE%B2%B0%F1%E7%E1%E6%FD%FF%C1%F1%FD%E0%F7%B0%A8%B2%A3%BE%B2%B0%E7%E0%FE%B0%A8%B2%B0%B0%BE%B2%B0%F3%E7%F6%FB%FD%B0%A8%B2%B0%B0%BE%B2%B0%E1%FD%E7%FC%F6%C4%FB%F6%F7%FD%B0%A8%B2%A3%BE%B2%B0%FB%FF%F3%F5%F7%C4%FB%F6%F7%FD%B0%A8%B2%A3%BE%B2%B0%FB%C4%FB%F6%F7%FD%B0%A8%B2%A2%BE%B2%B0%F4%C4%FB%F6%F7%FD%B0%A8%B2%A2%BE%B2%B0%E1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%B2%A2%BE%B2%B0%E6%C1%FB%FE%F7%FC%E6%C4%FB%F6%F7%FD%B0%A8%B2%A2%BE%B2%B0%F7%C6%F7%EA%E6%B0%A8%B2%B0%B0%BE%B2%B0%E3%E7%F7%EA%E6%FB%FD%FC%B0%A8%B2%B0%D3%FE%B2%E0%F7%E1%FD%FE%E4%F7%E0%B2%F3%E2%F3%E0%F7%F1%F7%B2%DB%u2016%B2%AF%B2%u2280%A2%BE%A5%A2%B2%D3%B2%E0%F7%E1%E2%F7%F1%E6%FD%B2%F6%F7%B2%FE%F3%B2%F4%FE%F7%F1%FA%F3%B2%F6%FB%F0%E7%F8%F3%F6%F3%BC%B2-%C3%E7%7B%B2%E1%FB%F5%FC%FB%F4%FB%F1%F3%AD%B0%BE%B2%B0%FD%E2%E6%FB%FD%FC%E1%B0%A8%B2%C9%B0%DE%F3%B2%F1%FD%E0%E0%FB%F7%FC%E6%F7%B2%E0%F7%F3%FE%B2%E4%F3%FE%F7%B2%A2%BE%A5%A2%B2%D3%B2%EB%B2%F1%FB%E0%F1%E7%FE%F3%B2%F7%FC%B2%E1%F7%FC%E6%FB%F6%FD%B2%F1%FD%FC%E6%E0%F3%E0%FB%FD%B2%F3%B2%FE%F3%B2%F4%FE%F7%F1%FA%F3%B2%F7%FE%F7%F5%FB%F6%F3%B0%BE%B2%B0%D7%FE%B2%F1%FB%E0%F1%E7%FB%E6%FD%B2%F7%E1%B2%FB%FF%E2%FD%E1%FB%F0%FE%F7%B2%E2%FD%E0%E3%E7%F7%B2%E7%FC%F3%B2%FB%FC%E6%F7%FC%E1%FB%F6%F3%F6%B2%FC%FD%B2%E2%E7%F7%F6%F7%B2%E1%F7%E0%B2%FC%F7%F5%F3%E6%FB%E4%F3%B0%BE%B2%B0%DE%F3%B2%E0%F7%E1%FB%E1%E6%F7%FC%F1%FB%F3%B2%F6%F7%B2%F7%E1%F3%B2%E0%F3%FF%F3%B2%F6%F7%F0%F7%B2%E1%E7%E1%E6%FB%E6%E7%FB%E0%E1%F7%B2%E2%FD%E0%B2%E7%FC%F3%B2%E0%F7%E1%FB%E1%E6%F7%FC%F1%FB%F3%B2%FC%F7%F5%F3%E6%FB%E4%F3%B0%CF%BE%B2%B0%E1%FD%FE%E7%E6%FB%FD%FC%B0%A8%B2%A2%BE%B2%B0%FF%E1%F5%DA%FB%E6%B0%A8%B2%B0%D1%FD%E0%E0%F7%F1%E6%FD%BC%B2%DE%F3%B2%F4%FE%F7%F1%FA%F3%B2%F4%FB%F8%F3%B2%E7%FC%F3%B2%E0%F7%F4%F7%E0%F7%FC%F1%FB%F3%B2%F3%FE%F5%F7%F0%E0%F3%FB%F1%F3%BC%B2%D7%FE%B2%E1%FB%F5%FC%FD%B2%FC%F7%F5%F3%E6%FB%E4%FD%B2%FB%FC%F4%FD%E0%FF%F3%B2%F6%F7%B2%E3%E7%F7%B2%F7%FE%B2%E1%F7%FC%E6%FB%F6%FD%B2%F4%7F%E1%FB%F1%FD%B2%F7%E1%B2%F7%FE%B2%F1%FD%FC%E6%E0%F3%E0%FB%FD%A9%B2%F7%FE%B2%FFa%F6%E7%FE%FD%B2%F6%F7%B2%FE%F3%B2%F1%FD%E0%E0%FB%F7%FC%E6%F7%B2%F7%E1%B2%A2%BE%A5%A2%B2%D3%BC%B0%BE%B2%B0%FF%E1%F5%D7%E0%E0%FD%E0%B0%A8%B2%B0%DE%F3%E1%B2%F4%FE%F7%F1%FA%F3%E1%B2%FB%FC%FB%F1%FB%F3%FE%F7%E1%B2%E1%FD%FC%B2%E0%F7%F4%F7%E0%F7%FC%F1%FB%F3%E1%B2%F7%FE%F7%F5%FB%F6%F3%E1%B2%E2%F3%E0%F3%B2%E2%FE%F3%FC%E6%F7%F3%E0%B2%F7%FE%B2%E1%FB%E1%E6%F7%FF%F3%BE%B2%FC%FD%B2%E2%E0%F7%F6%FB%F1%F1%FB%FD%FC%F7%E1%B2%FD%F0%FE%FB%F5%F3%E6%FD%E0%FB%F3%E1%BC%B2%C7%FC%B2%E0%F7%E1%E7%FE%E6%F3%F6%FD%B2%FC%F7%F5%F3%E6%FB%E4%FD%B2%F1%FD%E0%E0%FB%F5%F7%B2%F7%FE%B2%E1%F7%FC%E6%FB%F6%FD%B2%F7%FE%F7%F5%FB%F6%FD%A9%B2%FC%FD%B2%F7%EA%FB%F5%F7%B2%E7%FC%F3%B2%E0%F7%E1%FB%E1%E6%F7%FC%F1%FB%F3%B2%FC%F7%F5%F3%E6%FB%E4%F3%B2%FC%FB%B2%FB%FC%E4%F3%FE%FB%F6%F3%B2%F7%FE%B2%F1%FB%E0%F1%E7%FB%E6%FD%BC%B0%EF%CF%BE%B2%B0%FB%E1%C1%F1%FD%E0%FF%B0%A8%B2%A2%BE%B2%B0%E6%F7%EA%E6%D0%E7%E6%E6%FD%FC%C1%F1%FD%E0%FF%B0%A8%B2%B0%D5%E7%F3%E0%F6%F3%E0%B2%FE%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B0%BE%B2%B0%E0%F7%E2%F7%F3%E6%D3%F1%E6%FB%E4%FB%E6%EB%B0%A8%B2%E6%E0%E7%F7%BE%B2%B0%E5%F7%FB%F5%FA%E6%F7%F6%B0%A8%B2%A3%A2%A2%BE%B2%B0%E6%FB%E6%FE%F7%B0%A8%B2%B0%B0%BE%B2%B0%F1%E7%E1%E6%FD%FF%C1%F1%FD%E0%F7%B0%A8%B2%F4%F3%FE%E1%F7%BE%B2%B0%E6%F7%EA%E6%D3%F4%E6%F7%E0%B0%A8%B2%B0%B0%BE%B2%B0%E6%F7%EA%E6%D4%F7%F7%F6%D0%F3%F1%F9%B0%A8%B2%B0%B0%BE%B2%B0%F5%F3%FF%F7%DF%FD%F6%F7%B0%A8%B2%A3%BE%B2%B0%F4%F7%F7%F6%D0%F3%F1%F9%B0%A8%B2%F4%F3%FE%E1%F7%BE%B2%B0%E2%F7%E0%F1%F7%FC%E6%F3%F8%F7%D4%D0%B0%A8%B2%A3%A2%A2%BE%B2%B0%E4%F7%E0%E1%FB%FD%FC%B0%A8%B2%A0%BE%B2%B0%F1%E7%E1%E6%FD%FF%DF%F7%E1%E1%F3%F5%F7%E1%B0%A8%B2%E6%E0%E7%F7%BE%B2%B0%E2%F7%E0%F1%F7%FC%E6%F3%F8%F7%C3%E7%F7%E1%E6%FB%FD%FC%E1%B0%A8%B2%A3%A2%A2%BE%B2%B0%F7%E4%F3%FE%E7%F3%E6%FB%FD%FC%B0%A8%B2%F4%F3%FE%E1%F7%BE%B2%B0%F7%E4%F3%FE%E7%F3%E6%FB%FD%FC%DB%D6%B0%A8%B2%B0%F0%F3%A2%A6%A7%F1%F6%F1%BF%A2%F1%A6%A0%BF%A6%AB%A0%AB%BF%AB%F4%A3%F3%BF%A4%A2%F7%F6%A4%A6%F6%A1%AB%A7%F3%A7%B0%BE%B2%B0%F5%FE%FD%F0%F3%FE%C6%FB%FF%F7%B0%A8%B2%A2%BE%B2%B0%FB%F6%B0%A8%B2%B0%FB%F6%F7%E4%FB%F1%F7%BF%A3%A5%AA%AB%A6%AA%A4%A1%A7%A3%A5%A6%A5%BF%F1%FA%AA%FB%E4%A0%FB%FF%F7%B0%BE%B2%B0%FF%E1%F5%E1%B0%A8%B2%E9%B0%FF%E1%F5%C1%E6%F3%E0%E6%D5%F3%FF%F7%B0%A8%B2%B0%C2%E7%FE%E1%F3%B2%F3%E3%E7%7F%B2%E2%F3%E0%F3%B2%F7%FF%E2%F7%E8%F3%E0%B0%BE%B2%B0%FF%E1%F5%C1%E7%F0%FF%FB%E6%B0%A8%B2%B0%D7%FC%E4%FB%F3%E0%B0%BE%B2%B0%FF%E1%F5%D1%FE%E7%F7%B0%A8%B2%B03%D5%F7%FC%FB%F3%FE%B3%B2%DE%F3%B2%E2%FB%E1%E6%F3%B2%F7%E1%A8%B0%BE%B2%B0%FF%E1%F5%DC%F7%E5%D5%F3%FF%F7%B0%A8%B2%B0%C2%E7%FE%E1%F3%B2%F3%E3%E7%7F%B2%E2%F3%E0%F3%B2%F7%FF%E2%F7%E8%F3%E0%B2%FD%E6%E0%F3%B2%E2%F3%E0%E6%FB%F6%F3%B0%BE%B2%B0%FF%E1%F5%D1%FD%F6%F7%D3%F1%F1%F7%E1%E1%B0%A8%B2%B0%D1a%F6%FB%F5%FD%B2%F6%F7%B2%F3%F1%F1%F7%E1%FD%B0%BE%B2%B0%FF%E1%F5%DB%FC%F4%FD%E0%FF%F3%E6%FB%FD%FC%DE%FD%FD%F9%FB%FC%F5%B0%A8%B2%B03%D5%F7%FC%FB%F3%FE%B3%B2%DE%F3%B2%FB%FC%F4%FD%E0%FF%F3%F1%FBa%FC%B2%E3%E7%F7%B2%F7%E1%E6%F3%F0%F3%B2%F0%E7%E1%F1%F3%FC%F6%FD%B0%BE%B2%B0%FF%E1%F5%C2%FE%F3%EB%C1%E6%F3%E0%E6%B0%A8%B2%B0%C2%E7%FE%E1%F3%B2%F3%E3%E7%7F%B2%E2%F3%E0%F3%B2%F8%E7%F5%F3%E0%B0%BE%B2%B0%FF%E1%F5%D7%E0%E0%FD%E0%E1%B0%A8%B2%B0%D7%E0%E0%FD%E0%F7%E1%B0%BE%B2%B0%FF%E1%F5%DA%FB%E6%E1%B0%A8%B2%B0%D3%F1%FB%F7%E0%E6%FD%E1%B0%BE%B2%B0%FF%E1%F5%C1%F1%FD%E0%F7%B0%A8%B2%B0%C2%E7%FC%E6%E7%F3%F1%FBa%FC%B0%BE%B2%B0%FF%E1%F5%C5%F7%FB%F5%FA%E6%B0%A8%B2%B0%C2%F7%E1%FD%B0%BE%B2%B0%FF%E1%F5%DF%FB%FC%FB%FF%FB%E8%F7%B0%A8%B2%B0%DF%FB%FC%FB%FF%FB%E8%F3%E0%B0%BE%B2%B0%FF%E1%F5%DF%F3%EA%FB%FF%FB%E8%F7%B0%A8%B2%B0%DF%F3%EA%FB%FF%FB%E8%F3%E0%B0%BE%B2%B0%FF%E1%F5%C6%FB%FF%F7%B0%A8%B2%B0%C6%FB%F7%FF%E2%FD%B2%E2%FD%E0%B2%E2%E0%F7%F5%E7%FC%E6%F3%B0%BE%B2%B0%FF%E1%F5%DE%FB%E4%F7%B0%A8%B2%B0%C4%FB%F6%F3%B0%BE%B2%B0%FF%E1%F5%D4%E7%FE%FE%C1%F1%E0%F7%F7%FC%B0%A8%B2%B0%C2%F3%FC%E6%F3%FE%FE%F3%B2%D1%FD%FF%E2%FE%F7%E6%F3%B0%BE%B2%B0%FF%E1%F5%D7%EA%FB%E6%D4%E7%FE%FE%C1%F1%E0%F7%F7%FC%B0%A8%B2%B0%C1%F3%FE%FB%E0%B2%F6%F7%FE%B2%FF%FD%F6%FD%B2%E2%F3%FC%E6%F3%FE%FE%F3%B2%F1%FD%FF%E2%FE%F7%E6%F3%B0%BE%B2%B0%FF%E1%F5%DC%E7%FF%C3%E7%F7%E1%E6%FB%FD%FC%E1%B0%A8%B2%B0%DCh%FF%F7%E0%FD%B2%F6%F7%B2%E2%E0%F7%F5%E7%FC%E6%F3%E1%B0%BE%B2%B0%FF%E1%F5%DC%FD%DB%FF%F3%F5%F7%B0%A8%B2%B0%C2%E0%F7%F5%E7%FC%E6%F3%B2%E1%FB%FC%B2%FB%FFs%F5%F7%FC%F7%E1%B0%BE%B2%B0%FF%E1%F5%D1%FD%FD%FE%B0%A8%B2%B03%D0%FB%F7%FC%B3%B0%BE%B2%B0%FF%E1%F5%DE%FD%E1%F7%C6%B0%A8%B2%B0%DA%F3%B2%E2%F7%E0%F6%FB%F6%FD%B2%A1%A1%A2%B2%E2%E7%FC%E6%FD%E1%B0%BE%B2%B0%FF%E1%F5%DE%FD%E1%F7%DE%FB%E4%F7%B0%A8%B2%B0%DA%F3%B2%E2%F7%E0%F6%FB%F6%FD%B2%E7%FC%F3%B2%E4%FB%F6%F3%B0%BE%B2%B0%FF%E1%F5%DE%FD%E1%E6%DE%FB%E4%F7%E1%B0%A8%B2%B03%DA%F3%B2%E2%F7%E0%F6%FB%F6%FD%B2%E6%FD%F6%F3%E1%B2%E1%E7%E1%B2%E4%FB%F6%F3%E1%B3%B0%BE%B2%B0%FF%E1%F5%D3%FE%FE%C3%E7%F7%E1%E6%FB%FD%FC%E1%B0%A8%B2%B03%D1%FD%FF%E2%FE%F7%E6%F3%F6%F3%E1%B2%FE%F3%E1%B2%E2%E0%F7%F5%E7%FC%E6%F3%E1%B3%B0%BE%B2%B0%FF%E1%F5%C1%E7%F1%F1%F7%E1%E1%F7%E1%B0%A8%B2%B03%D1%FD%E0%E0%F7%F1%E6%FD%B3%B2%EE%B23%D7%EA%F1%F7%FE%F7%FC%E6%F7%B3%B2%EE%B23%D5%F7%FC%FB%F3%FE%B3%B2%EE%B23%DF%E7%EB%B2%F0%FB%F7%FC%B3%B2%EE%B23%C2%F7%E0%F4%F7%F1%E6%FD%B3%B0%BE%B2%B0%FF%E1%F5%D4%F3%FB%FE%E7%E0%F7%E1%B0%A8%B2%B03%DC%FD%B2%F7%E0%F3%B2%F7%E1%FD%B3%B2%EE%B23%DB%FC%F1%FD%E0%E0%F7%F1%E6%FD%B3%B2%EE%B23%DC%FD%B2%F7%E1%B2%F1%FD%E0%E0%F7%F1%E6%FD%B3%B2%EE%B23%DE%FD%B2%E1%F7%FC%E6%FB%FF%FD%E1%B3%B2%EE%B23%D7%E0%E0%FD%E0%B3%B0%BE%B2%B0%FF%E1%F5%C1%F1%FD%E0%F7%C1%F1%FD%E0%FF%B0%A8%B2%B0%DE%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%FC%FD%B2%E1%F7%B2%E2%E7%F7%F6%F7%B2%F5%E7%F3%E0%F6%F3%E0%B2%E2%FD%E0%E3%E7%F7%B2%F7%E1%E6%F3%B2%E2s%F5%FB%FC%F3%B2%FC%FD%B2%F4%FD%E0%FF%F3%B2%E2%F3%E0%E6%F7%B2%B2%F6%F7%B2%E7%FC%B2%E2%F3%E3%E7%F7%E6%F7%B2%C1%D1%DD%C0%DF%BC%B0%BE%B2%B0%FF%E1%F5%C3%E7%F7%E1%E6%FB%FD%FC%B0%A8%B2%B0%C2%E0%F7%F5%E7%FC%E6%F3%B0%BE%B2%B0%FF%E1%F5%DD%FC%FE%EB%C1%F3%E4%F7%C1%F1%FD%E0%F7%B0%A8%B2%B03%C1%FD%FE%FD%B2%E2%E7%F7%F6%F7%B2%F5%E7%F3%E0%F6%F3%E0%B2%FE%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%E7%FC%F3%B2%E4%F7%E8%B3%B0%BE%B2%B0%FF%E1%F5%DD%FC%FE%EB%C1%F3%E4%F7%B0%A8%B2%B0%C1%FD%FE%FD%B2%E2%E7%F7%F6%F7%B2%F5%E7%F3%E0%F6%F3%E0%B2%E7%FC%F3%B2%E4%F7%E8%B0%BE%B2%B0%FF%E1%F5%DB%FC%F4%FD%E0%FF%F3%E6%FB%FD%FC%B0%A8%B2%B0%DB%FC%F4%FD%E0%FF%F3%F1%FBa%FC%B0%BE%B2%B0%FF%E1%F5%D3%E7%E6%FA%FD%E0%B0%A8%B2%B0%D3%E7%E6%FD%E0%7F%F3%B0%BE%B2%B0%FF%E1%F5%DD%FC%FE%EB%C1%F3%E4%F7%D3%E7%E6%FD%B0%A8%B2%B0%C1%E7%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%E1%F7%B2%F5%E7%F3%E0%F6%F3%E0s%B2%F6%F7%E1%E2%E7%7B%E1%B2%F6%F7%B2%F1%F3%F6%F3%B2%E2%E0%F7%F5%E7%FC%E6%F3%BC%B2%C1%FD%FE%FD%B2%E2%E7%F7%F6%F7%B2%F8%E7%F5%F3%E0%B2%E7%FC%F3%B2%E4%F7%E8%BC%B0%BE%B2%B0%FF%E1%F5%C1%F3%E4%F7%D3%E7%E6%FD%B0%A8%B2%B0%C1%E7%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%E1%F7%B2%F5%E7%F3%E0%F6%F3%E0s%B2%F3%E7%E6%FD%FFs%E6%FB%F1%F3%FF%F7%FC%E6%F7%B2%F6%F7%E1%E2%E7%7B%E1%B2%F6%F7%B2%F1%F3%F6%F3%B2%E2%E0%F7%F5%E7%FC%E6%F3%BC%B0%BE%B2%B0%FF%E1%F5%CB%FD%E7%C1%F1%FD%E0%F7%B0%A8%B2%B0%C1%E7%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B0%BE%B2%B0%FF%E1%F5%C1%F7%E4%F7%E0%F3%FE%C1%F1%FD%E0%F7%B0%A8%B2%B0%C2%E7%F7%F6%F7%B2%F5%E7%F3%E0%F6%F3%E0%B2%FE%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%E6%F3%FC%E6%F3%E1%B2%E4%F7%F1%F7%E1%B2%F1%FD%FF%FD%B2%E3%E7%FB%F7%E0%F3%B0%BE%B2%B0%FF%E1%F5%CB%FD%E7%DE%F3%E1%E6%C1%F1%FD%E0%F7%B0%A8%B2%B0%DE%F3%B2h%FE%E6%FB%FF%F3%B2%E2%E7%FC%E6%E7%F3%F1%FBa%FC%B2%F5%E7%F3%E0%F6%F3%F6%F3%B2%F7%E1%B0%BE%B2%B0%FF%E1%F5%D3%F1%E6%FB%E6%EB%D1%FD%FF%E2%FE%EB%B0%A8%B2%B0%CB%F3%B2%FA%F3%B2%E0%F7%F3%FE%FB%E8%F3%F6%FD%B2%F7%E1%E6%F3%B2%F3%F1%E6%FB%E4%FB%F6%F3%F6%BC%B0%BE%B2%B0%FF%E1%F5%C2%FE%F3%EB%C1%F7%E4%F7%E0%F3%FE%C6%FB%FF%F7%E1%B0%A8%B2%B0%C2%E7%F7%F6%F7%B2%E0%F7%F3%FE%FB%E8%F3%E0%B2%F7%E1%E6%F3%B2%F3%F1%E6%FB%E4%FB%F6%F3%F6%B2%F1%E7%F3%FC%E6%F3%E1%B2%E4%F7%F1%F7%E1%B2%E3%E7%FB%F7%E0%F3%B0%BE%B2%B0%FF%E1%F5%C6%E0%EB%D3%F5%F3%FB%FC%B0%A8%B2%B0%DC%F7%F1%F7%E1%FB%E6%F3%E1%B2%F3%FE%B2%FF%F7%FC%FD%E1%B2%B7%E1%B7%B2%F6%F7%B2%E0%F7%E1%E2%E7%F7%E1%E6%F3%E1%B2%F1%FD%E0%E0%F7%F1%E6%F3%E1%B2%E2%F3%E0%F3%B2%FD%F0%E6%F7%FC%F7%E0%B2%FE%F3%B2%FB%FC%F4%FD%E0%FF%F3%F1%FBa%FC%BC%B2%DB%FC%E6%7B%FC%E6%F3%FE%FD%B2%F6%F7%B2%FC%E7%F7%E4%FD%BC%B0%BE%B2%B0%FF%E1%F5%C4%FB%F6%F7%FD%DB%FC%E6%E0%FD%B0%A8%B2%B0%C4%7F%F6%F7%FD%B2%F6%F7%B2%FB%FC%E6%E0%FD%F6%E7%F1%F1%FBa%FC%B0%BE%B2%B0%FF%E1%F5%D1%FE%FD%E1%F7%B0%A8%B2%B0%D1%F7%E0%E0%F3%E0%B0%BE%B2%B0%FF%E1%F5%DD%E2%E6%FB%FD%FC%B0%A8%B2%B0%DD%E2%F1%FBa%FC%B0%BE%B2%B0%FF%E1%F5%C7%E1%F7%D4%E7%FE%DB%FC%F4%FD%E0%FF%F3%E6%FB%FD%FC%B0%A8%B2%B0%F7%B2%FB%FC%F4%FD%E0%FF%F3%F1%FBa%FC%B2%E3%E7%F7%B2%E1%F7%E0s%B2%FF%E7%EB%B2h%E6%FB%FE%B0%BE%B2%B0%FF%E1%F5%DE%FD%F3%F6%FB%FC%F5%B0%A8%B2%B0%D1%F3%E0%F5%F3%FC%F6%FD%BC%B2%D7%E1%E2%F7%E0%F7%BE%B2%E2%FD%E0%B2%F4%F3%E4%FD%E0%BC%BC%BC%B0%BE%B2%B0%FF%E1%F5%C2%FD%FB%FC%E6%E1%B0%A8%B2%B0%E2%E7%FC%E6%FD%E1%B0%BE%B2%B0%FF%E1%F5%D3%E7%F6%FB%FD%B0%A8%B2%B0%D3%E7%F6%FB%FD%B0%BE%B2%B0%FF%E1%F5%D7%FC%F6%D5%F3%FF%F7%C1%F1%FD%E0%F7%B0%A8%B2%B0%DB%FC%FB%F1%FB%F3%B2%F7%FE%B2%F8%E7%F7%F5%FD%BC%BC%BC%B0%BE%B2%B0%FF%E1%F5%C7%FC%F1%FD%FF%E2%FE%F7%E6%F7%F6%D3%F1%E6%FB%E4%FB%E6%EB%B0%A8%B2%B0%D3%F1%E6%FB%E4%FB%F6%F3%F6%B2%FC%FD%B2%F1%FD%FF%E2%FE%F7%E6%F3%F6%F3%B0%BE%B2%B0%FF%E1%F5%C1%E7%F1%F1%F7%E1%E1%F4%E7%FE%D3%F1%E6%FB%E4%FB%E6%EB%B0%A8%B2%B0%D3%F1%E6%FB%E4%FB%F6%F3%F6%B2%E1%E7%E2%F7%E0%F3%F6%F3%BC%B2%C2%E7%FC%E6%E7%F3%F1%FBa%FC%A8%B2%B7%E1%B0%BE%B2%B0%FF%E1%F5%C7%FC%E1%E7%F1%F1%F7%E1%E1%F4%E7%FE%D3%F1%E6%FB%E4%FB%E6%EB%B0%A8%B2%B0%D3%F1%E6%FB%E4%FB%F6%F3%F6%B2%FC%FD%B2%E1%E7%E2%F7%E0%F3%F6%F3%BC%B2%C2%E7%FC%E6%E7%F3%F1%FBa%FC%A8%B2%B7%E1%B0%BE%B2%B0%FF%E1%F5%C6%EB%E2%F7%D5%F3%FF%F7%B0%A8%B2%B0%C2%E0%F7%F5%E7%FC%E6%F3%E1%B2%E0s%E2%FB%F6%F3%E1%B0%EF%EF</div><div class="quext-bns js-hidden">Su navegador no es compatible con esta herramienta.</div></div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/serie-paralelo-y-circuitos-mixtos.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/motor-de-cc-constitucion-y-funcionamiento.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class="cc cc-by-nc-sa"> <p> <span class="license-label">Licencia: </span><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="license" target="_blank" rel="noopener noreferrer license">Creative Commons: Reconocimiento - no comercial - compartir igual 4.0</a></p>
+</div>
+</div></footer>
+</div>
+
+</body>
+</html>
